@@ -224,9 +224,22 @@ def extract_shlok_mala():
                     pill.decompose()
                 eng_text = clean_html_text(eng_box)
                 
-            # Audio
-            play_btn = art.find("button", class_="shlok-play-btn")
-            audio_file = play_btn.get("data-audio", "").strip() if play_btn else ""
+            # Audio file resolution
+            audio_file = ""
+            shlok_num = None
+            if s_id:
+                m = re.search(r"SH_S(\d+)", s_id)
+                if m:
+                    shlok_num = int(m.group(1))
+            if not shlok_num and badge:
+                m = re.search(r"(\d+)", badge)
+                if m:
+                    shlok_num = int(m.group(1))
+
+            if shlok_num and mala_num == 1:
+                candidate = f"shlok_{shlok_num}.m4a"
+                if os.path.exists(os.path.join("public", "audio", "shlok_mala", candidate)):
+                    audio_file = candidate
             
             shlokas.append({
                 "id": s_id,
