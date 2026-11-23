@@ -1,28 +1,27 @@
 import { Metadata } from 'next';
 import {
-  BookOpen,
   Sparkles,
-  Keyboard,
-  Compass,
   ArrowRight,
-  Flame,
-  Trees,
-  CheckCircle,
   Quote,
 } from 'lucide-react';
+import { DailySubhashitaWidget } from '@/components/home/DailySubhashitaWidget';
+import { InteractiveDinacharya } from '@/components/home/InteractiveDinacharya';
+import { InteractivePillars } from '@/components/home/InteractivePillars';
+import { InteractiveFAQ } from '@/components/home/InteractiveFAQ';
 import { HomeInteractiveSections } from '@/components/home/HomeInteractiveSections';
 
 export const metadata: Metadata = {
   title: 'Gurukulam | Reviving Ancient Vedic Wisdom & Sanskrit Heritage',
-  description: 'A traditional yet modern digital Gurukul featuring the complete 24,000 verses of Valmiki Ramayana, Shlok Mala audio recitations, and Vedic typing tools.',
+  description:
+    'A traditional yet modern digital Gurukul featuring the complete 24,000 verses of Valmiki Ramayana, Shlok Mala audio recitations, and Vedic typing tools.',
 };
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-canvas space-y-24 pb-24">
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-28 px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto space-y-6">
+      <section className="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-20 px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto space-y-8">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-semibold border border-accent/20 animate-fadeIn">
             <Sparkles className="w-3.5 h-3.5" />
             <span>गुरुकुलम् • Ancient Wisdom for Modern Times</span>
@@ -36,31 +35,71 @@ export default function HomePage() {
             Uncover the timeless teachings of the Vedas, Valmiki Ramayana, and classical Darshanas — offering clarity, mental stillness, and moral guidance for today's complex world.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+          {/* Action Buttons (Keyboard link removed as requested; accessible in Navbar) */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <a
               href="/about"
-              className="px-7 py-3 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-all shadow-subtle hover:shadow-elevated flex items-center space-x-2 group"
+              className="px-7 py-3 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-all shadow-subtle hover:shadow-elevated flex items-center space-x-2 group min-h-[44px]"
             >
               <span>गुरुकुल परिचय (About Gurukulam)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="/keyboard"
-              className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textPrimary text-sm font-semibold transition-all shadow-subtle"
+              href="/campus"
+              className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textPrimary text-sm font-semibold transition-all shadow-subtle min-h-[44px] flex items-center"
             >
-              वैदिक कीबोर्ड (Vedic Keyboard)
+              परिसर दर्शन (Campus Life)
             </a>
             <a
-              href="/campus"
-              className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textSecondary hover:text-textPrimary text-sm font-medium transition-all"
+              href="/programs"
+              className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textSecondary hover:text-textPrimary text-sm font-medium transition-all min-h-[44px] flex items-center"
             >
-              परिसर दर्शन (Campus)
+              अभ्यासक्रम (Programs)
             </a>
+          </div>
+
+          {/* Heritage Metrics Strip */}
+          <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto border-t border-border-subtle/80">
+            <div className="p-3 text-center">
+              <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent block">
+                २३,३५८+
+              </span>
+              <span className="text-[11px] text-textMuted font-medium uppercase tracking-wider">
+                रामायण श्लोक
+              </span>
+            </div>
+            <div className="p-3 text-center">
+              <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent block">
+                ६४५
+              </span>
+              <span className="text-[11px] text-textMuted font-medium uppercase tracking-wider">
+                सम्पूर्ण सर्ग
+              </span>
+            </div>
+            <div className="p-3 text-center">
+              <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent block">
+                १०+
+              </span>
+              <span className="text-[11px] text-textMuted font-medium uppercase tracking-wider">
+                ग्रन्थ एवं शोध पत्र
+              </span>
+            </div>
+            <div className="p-3 text-center">
+              <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent block">
+                १००%
+              </span>
+              <span className="text-[11px] text-textMuted font-medium uppercase tracking-wider">
+                प्रामाणिक परम्परा
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Our Core Teachings (Restored from Legacy with authentic imagery) */}
+      {/* 2. Interactive Daily Subhashita / Wisdom Section */}
+      <DailySubhashitaWidget />
+
+      {/* 3. Our Core Teachings (Restored from Legacy with authentic imagery) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-2 mb-12">
           <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent">
@@ -101,10 +140,10 @@ export default function HomePage() {
               </div>
               <div className="pt-3 border-t border-border-subtle">
                 <a
-                  href="/library"
+                  href="/about"
                   className="text-xs font-semibold text-accent flex items-center space-x-1 group-hover:translate-x-0.5 transition-transform"
                 >
-                  <span>Explore Wisdom Books</span>
+                  <span>Learn About Philosophy</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -173,10 +212,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Shastric Quote Section (Restored from Legacy) */}
+      {/* 4. Interactive Gurukul Daily Schedule (दिनचर्या) */}
+      <InteractiveDinacharya />
+
+      {/* 5. Interactive 4 Pillars of Learning (शिक्षा के चार स्तम्भ) */}
+      <InteractivePillars />
+
+      {/* 6. Shastric Quote Section (Restored from Legacy) */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="p-8 sm:p-14 rounded-3xl bg-surface border border-border-strong text-center space-y-4 shadow-subtle relative overflow-hidden">
-          <div className="w-12 h-12 rounded-full bg-accent-soft text-accent mx-auto flex items-center justify-center mb-2">
+          <div className="w-12 h-12 rounded-full bg-accent-soft text-accent mx-auto flex items-center justify-center mb-2 shadow-subtle">
             <Quote className="w-6 h-6" />
           </div>
 
@@ -190,7 +235,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Featured Programs Preview Grid (Restored from Legacy) */}
+      {/* 7. Featured Programs Preview Grid (Restored from Legacy) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-2 mb-12">
           <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent">
@@ -278,7 +323,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Interactive Testimonials & Newsletter (Restored from Legacy) */}
+      {/* 8. Interactive Frequently Asked Questions (FAQ) */}
+      <InteractiveFAQ />
+
+      {/* 9. Interactive Testimonials & Newsletter */}
       <HomeInteractiveSections />
     </div>
   );
