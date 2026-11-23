@@ -1,0 +1,65 @@
+[
+  {
+    "id": "balakanda",
+    "slug": "balakanda",
+    "nameDevanagari": "बालकाण्ड",
+    "order": 1,
+    "totalSargas": 77,
+    "totalVerses": 2259,
+    "description": "श्रीराम का प्राकट्य, बाललीला, विश्वामित्र यज्ञ-रक्षा, अहल्या-उद्धार एवं श्रीसीता-राम विवाह।"
+  },
+  {
+    "id": "ayodhyakanda",
+    "slug": "ayodhyakanda",
+    "nameDevanagari": "अयोध्याकाण्ड",
+    "order": 2,
+    "totalSargas": 119,
+    "totalVerses": 4285,
+    "description": "श्रीराम का राज्याभिषेक प्रसंग, कैकेयी वरदान, वनगमन, दशरथ-वियोग एवं भरत-मिलाप।"
+  },
+  {
+    "id": "aranyakanda",
+    "slug": "aranyakanda",
+    "nameDevanagari": "आरण्यकाण्ड",
+    "order": 3,
+    "totalSargas": 75,
+    "totalVerses": 2446,
+    "description": "दण्डकारण्य निवास, ऋषि-मुनि दर्शन, शूर्पणखा प्रसंग, खर-दूषण वध, मारीच प्रसंग एवं सीता-हरण।"
+  },
+  {
+    "id": "kishkindhakanda",
+    "slug": "kishkindhakanda",
+    "nameDevanagari": "किष्किन्धाकाण्ड",
+    "order": 4,
+    "totalSargas": 67,
+    "totalVerses": 2460,
+    "description": "ऋष्यमूक पर्वत, श्रीराम-सुग्रीव मित्रता, वालि वध, सीता अन्वेषण एवं हनुमान जी का समुद्र-तट गमन।"
+  },
+  {
+    "id": "sundarakanda",
+    "slug": "sundarakanda",
+    "nameDevanagari": "सुन्दरकाण्ड",
+    "order": 5,
+    "totalSargas": 68,
+    "totalVerses": 2828,
+    "description": "हनुमान जी का समुद्र-लंघन, लंका प्रवेश, अशोक वाटिका में सीता-दर्शन, लंका दहन एवं प्रत्यागमन।"
+  },
+  {
+    "id": "yuddhakanda",
+    "slug": "yuddhakanda",
+    "nameDevanagari": "युद्धकाण्ड",
+    "order": 6,
+    "totalSargas": 128,
+    "totalVerses": 5707,
+    "description": "सेतु-बंधन, लंका घेरा, विभीषण शरणागति, मेघनाद-कुम्भकर्ण-रावण वध एवं श्रीराम का अयोध्या प्रत्यागमन।"
+  },
+  {
+    "id": "uttarakanda",
+    "slug": "uttarakanda",
+    "nameDevanagari": "उत्तरकाण्ड",
+    "order": 7,
+    "totalSargas": 111,
+    "totalVerses": 3373,
+    "description": "श्रीराम का राज्याभिषेक, रामराज्य वर्णन, लव-कुश जन्म एवं श्रीराम की परमधाम यात्रा।"
+  }
+]

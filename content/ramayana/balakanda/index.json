@@ -1,0 +1,393 @@
+{
+  "kanda": "balakanda",
+  "kandaTitle": "बालकाण्ड",
+  "totalSargas": 77,
+  "totalVerses": 2259,
+  "sargas": [
+    {
+      "sarga": 1,
+      "title": "बालकाण्डे प्रथमः सर्गः",
+      "totalVerses": 100
+    },
+    {
+      "sarga": 2,
+      "title": "बालकाण्डे द्वितीयः सर्गः",
+      "totalVerses": 43
+    },
+    {
+      "sarga": 3,
+      "title": "बालकाण्डे  तृतीयः सर्गः",
+      "totalVerses": 35
+    },
+    {
+      "sarga": 4,
+      "title": "बालकाण्डे चतुर्थः सर्गः",
+      "totalVerses": 34
+    },
+    {
+      "sarga": 5,
+      "title": "बालकाण्डे पञ्चमः सर्गः",
+      "totalVerses": 23
+    },
+    {
+      "sarga": 6,
+      "title": "बालकाण्डे  षष्ठः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 7,
+      "title": "बालकाण्डे सप्तमः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 8,
+      "title": "बालकाण्डे अष्टमः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 9,
+      "title": "बालकाण्डे नवमः सर्गः",
+      "totalVerses": 20
+    },
+    {
+      "sarga": 10,
+      "title": "बालकाण्डे दशमः सर्गः",
+      "totalVerses": 33
+    },
+    {
+      "sarga": 11,
+      "title": "बालकाण्डे एकादशः सर्गः",
+      "totalVerses": 31
+    },
+    {
+      "sarga": 12,
+      "title": "बालकाण्डे द्वादशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 13,
+      "title": "बालकाण्डे त्रयोदशः सर्गः",
+      "totalVerses": 41
+    },
+    {
+      "sarga": 14,
+      "title": "बालकाण्डे चतुर्दशः सर्गः",
+      "totalVerses": 60
+    },
+    {
+      "sarga": 15,
+      "title": "बालकाण्डे पञ्चदशः सर्गः",
+      "totalVerses": 34
+    },
+    {
+      "sarga": 16,
+      "title": "बालकाण्डे षोडशः सर्गः",
+      "totalVerses": 32
+    },
+    {
+      "sarga": 17,
+      "title": "बालकाण्डे सप्तदशः सर्गः",
+      "totalVerses": 37
+    },
+    {
+      "sarga": 18,
+      "title": "बालकाण्डे अष्टादशः सर्गः",
+      "totalVerses": 59
+    },
+    {
+      "sarga": 19,
+      "title": "बालकाण्डे एकोनविंशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 20,
+      "title": "बालकाण्डे विंशः सर्गः",
+      "totalVerses": 28
+    },
+    {
+      "sarga": 21,
+      "title": "बालकाण्डे एकविंशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 22,
+      "title": "बालकाण्डे द्वाविंशः सर्गः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 23,
+      "title": "बालकाण्डे त्रयोविंशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 24,
+      "title": "बालकाण्डे चतुर्विंशः सर्गः",
+      "totalVerses": 32
+    },
+    {
+      "sarga": 25,
+      "title": "बालकाण्डे पञ्चविंशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 26,
+      "title": "बालकाण्डे षड्विंशः सर्गः",
+      "totalVerses": 36
+    },
+    {
+      "sarga": 27,
+      "title": "बालकाण्डे सप्तविंशः सर्गः",
+      "totalVerses": 28
+    },
+    {
+      "sarga": 28,
+      "title": "बालकाण्डे अष्टाविंशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 29,
+      "title": "बालकाण्डे एकोनत्रिंशः सर्गः",
+      "totalVerses": 32
+    },
+    {
+      "sarga": 30,
+      "title": "बालकाण्डे त्रिंशः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 31,
+      "title": "बालकाण्डे एकत्रिंशः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 32,
+      "title": "बालकाण्डे द्वात्रिंशः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 33,
+      "title": "बालकाण्डे त्रयस्त्रिंशः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 34,
+      "title": "बालकाण्डे चतुस्त्रिंशः सर्गः",
+      "totalVerses": 23
+    },
+    {
+      "sarga": 35,
+      "title": "बालकाण्डे पञ्चत्रिंशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 36,
+      "title": "बालकाण्डे षट्त्रिंशः सर्गः",
+      "totalVerses": 27
+    },
+    {
+      "sarga": 37,
+      "title": "बालकाण्डे सप्तत्रिंशः सर्गः",
+      "totalVerses": 32
+    },
+    {
+      "sarga": 38,
+      "title": "बालकाण्डे अष्टत्रिंशः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 39,
+      "title": "बालकाण्डे एकोनचत्वारिंशः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 40,
+      "title": "बालकाण्डे चत्वारिंशः सर्गः",
+      "totalVerses": 30
+    },
+    {
+      "sarga": 41,
+      "title": "बालकाण्डे एकचत्वारिंशः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 42,
+      "title": "बालकाण्डे द्विचत्वारिंशः सर्गः",
+      "totalVerses": 25
+    },
+    {
+      "sarga": 43,
+      "title": "बालकाण्डे त्रिचत्वारिंशः सर्गः",
+      "totalVerses": 41
+    },
+    {
+      "sarga": 44,
+      "title": "बालकाण्डे चतुचत्वारिंशः सर्गः",
+      "totalVerses": 23
+    },
+    {
+      "sarga": 45,
+      "title": "बालकाण्डे पञ्चचत्वारिंशः सर्गः",
+      "totalVerses": 45
+    },
+    {
+      "sarga": 46,
+      "title": "बालकाण्डे षट्चत्वारिंशः सर्गः",
+      "totalVerses": 23
+    },
+    {
+      "sarga": 47,
+      "title": "बालकाण्डे सप्तचत्वारिंशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 48,
+      "title": "बालकाण्डे अष्टचत्वारिंशः सर्गः",
+      "totalVerses": 33
+    },
+    {
+      "sarga": 49,
+      "title": "बालकाण्डे एकोनपञ्चाशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 50,
+      "title": "बालकाण्डे पञ्चाशः सर्गः",
+      "totalVerses": 25
+    },
+    {
+      "sarga": 51,
+      "title": "बालकाण्डे एकपञ्चाशः सर्गः",
+      "totalVerses": 28
+    },
+    {
+      "sarga": 52,
+      "title": "बालकाण्डे द्विपञ्चाशः सर्गः",
+      "totalVerses": 23
+    },
+    {
+      "sarga": 53,
+      "title": "बालकाण्डे त्रिपञ्चाशः सर्गः",
+      "totalVerses": 25
+    },
+    {
+      "sarga": 54,
+      "title": "बालकाण्डे चतुःपञ्चाशः सर्गः",
+      "totalVerses": 23
+    },
+    {
+      "sarga": 55,
+      "title": "बालकाण्डे पञ्चपञ्चाशः सर्गः",
+      "totalVerses": 28
+    },
+    {
+      "sarga": 56,
+      "title": "बालकाण्डे षट्पञ्चाशः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 57,
+      "title": "बालकाण्डे सप्तपञ्चाशः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 58,
+      "title": "बालकाण्डे अष्टपञ्चाशः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 59,
+      "title": "बालकाण्डे एकोनषष्टितमः सर्गः",
+      "totalVerses": 22
+    },
+    {
+      "sarga": 60,
+      "title": "बालकाण्डे षष्टितमः सर्गः",
+      "totalVerses": 34
+    },
+    {
+      "sarga": 61,
+      "title": "बालकाण्डे एकषष्टितमः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 62,
+      "title": "बालकाण्डे द्विषष्टितमः सर्गः",
+      "totalVerses": 28
+    },
+    {
+      "sarga": 63,
+      "title": "बालकाण्डे त्रिषष्टितमः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 64,
+      "title": "बालकाण्डे चतुःषष्टितमः सर्गः",
+      "totalVerses": 20
+    },
+    {
+      "sarga": 65,
+      "title": "बालकाण्डे पञ्चषष्ठितमः सर्गः",
+      "totalVerses": 40
+    },
+    {
+      "sarga": 66,
+      "title": "बालकाण्डे षट्षष्टितमः सर्गः",
+      "totalVerses": 26
+    },
+    {
+      "sarga": 67,
+      "title": "बालकाण्डे सप्तषष्टितमः सर्गः",
+      "totalVerses": 27
+    },
+    {
+      "sarga": 68,
+      "title": "बालकाण्डे अष्टषष्टितमः सर्गः",
+      "totalVerses": 19
+    },
+    {
+      "sarga": 69,
+      "title": "बालकाण्डे एकोनसप्ततितमः सर्गः",
+      "totalVerses": 18
+    },
+    {
+      "sarga": 70,
+      "title": "बालकाण्डे सप्ततितमः सर्गः",
+      "totalVerses": 45
+    },
+    {
+      "sarga": 71,
+      "title": "बालकाण्डे एकसप्ततितमः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 72,
+      "title": "बालकाण्डे द्विसप्ततितमः सर्गः",
+      "totalVerses": 25
+    },
+    {
+      "sarga": 73,
+      "title": "बालकाण्डे त्रिसप्ततितमः सर्गः",
+      "totalVerses": 40
+    },
+    {
+      "sarga": 74,
+      "title": "बालकाण्डे चतुःसप्ततितमः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 75,
+      "title": "बालकाण्डे पञ्चसप्ततितमः सर्गः",
+      "totalVerses": 28
+    },
+    {
+      "sarga": 76,
+      "title": "बालकाण्डे षट्सप्ततितमः सर्गः",
+      "totalVerses": 24
+    },
+    {
+      "sarga": 77,
+      "title": "बालकाण्डे सप्तसप्ततितमः सर्गः",
+      "totalVerses": 29
+    }
+  ]
+}
