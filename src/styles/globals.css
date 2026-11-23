@@ -220,7 +220,14 @@ button, [role="button"], a, input, select, textarea {
 
 /* On wide containers, keep hemistich strictly unbroken on a single line */
 @container shloka (min-width: 720px) {
-  .shloka-line {
+  .shloka-meter-standard .shloka-line,
+  .shloka-meter-medium .shloka-line {
+    white-space: nowrap;
+  }
+}
+
+@container shloka (min-width: 880px) {
+  .shloka-meter-long .shloka-line {
     white-space: nowrap;
   }
 }

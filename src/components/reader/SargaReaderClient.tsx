@@ -133,7 +133,7 @@ export function SargaReaderClient({
           <button
             type="button"
             onClick={() => setExpandAll(!expandAll)}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-border-subtle bg-subtle/50 hover:bg-subtle text-textSecondary hover:text-textPrimary text-xs font-medium transition-colors"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-border-subtle bg-subtle/50 hover:bg-subtle text-textSecondary hover:text-textPrimary text-xs font-medium transition-colors min-h-[38px] sm:min-h-[36px]"
             title={expandAll ? 'सभी व्याख्या समेटें' : 'सभी व्याख्या खोलें'}
           >
             {expandAll ? <EyeOff className="w-3.5 h-3.5 text-accent" /> : <Eye className="w-3.5 h-3.5" />}

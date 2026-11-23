@@ -86,6 +86,8 @@ export function HomeInteractiveSections() {
                 <img
                   src={activeTestimonial.image}
                   alt={activeTestimonial.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -100,17 +102,21 @@ export function HomeInteractiveSections() {
             </div>
 
             {/* Slide Navigation Dots */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 sm:space-x-2">
               {TESTIMONIALS.map((_, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setCurrentSlide(i)}
-                  className={`h-2.5 rounded-full transition-all ${
-                    currentSlide === i ? 'w-8 bg-accent' : 'w-2.5 bg-border-strong hover:bg-textMuted'
-                  }`}
+                  className="p-2 min-h-[36px] min-w-[36px] flex items-center justify-center"
                   aria-label={`Show testimonial ${i + 1}`}
-                />
+                >
+                  <span
+                    className={`h-2.5 rounded-full transition-all block ${
+                      currentSlide === i ? 'w-8 bg-accent' : 'w-2.5 bg-border-strong hover:bg-textMuted'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </div>

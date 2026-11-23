@@ -6,9 +6,24 @@ import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Gurukulam | Reviving Ancient Vedic Wisdom & Scriptures',
-  description: 'Digital Vedic Gurukul platform featuring complete Valmiki Ramayana, Shlok Mala, authentic Sanskrit commentaries, and Vedic typing tools.',
+  description:
+    'Digital Vedic Gurukul platform featuring complete Valmiki Ramayana, Shlok Mala, authentic Sanskrit commentaries, and Vedic typing tools.',
   icons: {
     icon: '/favicon.ico',
+  },
+  openGraph: {
+    title: 'Gurukulam | Reviving Ancient Vedic Wisdom & Sanskrit Heritage',
+    description:
+      'Digital Vedic Gurukul platform featuring complete 24,000 verses of Valmiki Ramayana, Shlok Mala, and authentic Sanskrit commentaries.',
+    type: 'website',
+    locale: 'sa_IN',
+    siteName: 'Gurukulam',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gurukulam | Reviving Ancient Vedic Wisdom',
+    description:
+      'Digital Vedic Gurukul platform featuring complete Valmiki Ramayana, Shlok Mala, and authentic Sanskrit commentaries.',
   },
 };
 

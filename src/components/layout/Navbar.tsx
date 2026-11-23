@@ -38,7 +38,18 @@ export function Navbar() {
     setAboutDropdownOpen(false);
   }, [pathname]);
 
-  // Close on Escape or click outside
+  // Lock body scroll when mobile menu is open
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      const orig = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = orig;
+      };
+    }
+  }, [mobileMenuOpen]);
+
+  // Close on Escape, click outside, or resize to desktop
   React.useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -51,11 +62,18 @@ export function Navbar() {
         setAboutDropdownOpen(false);
       }
     };
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileMenuOpen(false);
+      }
+    };
     window.addEventListener('keydown', handleKey);
     document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('keydown', handleKey);
       document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

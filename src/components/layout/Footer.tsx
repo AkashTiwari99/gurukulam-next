@@ -92,6 +92,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/programs" className="text-textSecondary hover:text-accent transition-colors">
+                  Educational Programs (अभ्यासक्रम)
+                </Link>
+              </li>
+              <li>
                 <Link href="/campus" className="text-textSecondary hover:text-accent transition-colors">
                   Campus & Dinacharya Schedule
                 </Link>
