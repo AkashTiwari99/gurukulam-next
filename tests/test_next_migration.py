@@ -50,10 +50,25 @@ class TestNextMigration(unittest.TestCase):
         self.assertEqual(d2["totalShlokas"], 229)
 
     def test_static_build_output(self):
-        self.assertTrue(os.path.exists("out/index.html"))
-        self.assertTrue(os.path.exists("out/books/ramayana/index.html"))
-        self.assertTrue(os.path.exists("out/books/ramayana/balakanda/sarga-1/index.html"))
-        self.assertTrue(os.path.exists("out/keyboard/index.html"))
+        expected_routes = [
+            "out/index.html",
+            "out/about/index.html",
+            "out/vision-mission/index.html",
+            "out/sanatan-dharma/index.html",
+            "out/team/index.html",
+            "out/campus/index.html",
+            "out/gallery/index.html",
+            "out/programs/index.html",
+            "out/contact/index.html",
+            "out/books/index.html",
+            "out/books/ramayana/index.html",
+            "out/books/ramayana/balakanda/sarga-1/index.html",
+            "out/books/shlok-mala/1/index.html",
+            "out/books/shlok-mala/2/index.html",
+            "out/keyboard/index.html",
+        ]
+        for route in expected_routes:
+            self.assertTrue(os.path.exists(route), f"Missing exported page: {route}")
 
 if __name__ == "__main__":
     unittest.main()

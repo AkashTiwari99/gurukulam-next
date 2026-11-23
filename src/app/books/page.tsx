@@ -19,6 +19,11 @@ const PDF_BOOKS = [
     description: 'Modern applications of ancient Indian epistemology and consciousness studies.',
   },
   {
+    title: 'Vedic Wisdom — Volume 2',
+    file: '/pdf/VEDIC WISDOM 2.pdf',
+    description: 'Advanced reflections on Vedic metaphysics, nature ethics, and cosmic order.',
+  },
+  {
     title: 'REVIVING VEDIC KNOWLEDGE',
     file: '/pdf/REVIVING VEDIC KNOWLEDGE.pdf',
     description: 'Foundations of traditional Gurukul pedagogies and scientific inquiry.',

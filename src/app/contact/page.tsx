@@ -58,8 +58,14 @@ export default function ContactPage() {
                   <div>
                     <p className="text-xs text-textMuted">Email Address</p>
                     <a
+                      href="mailto:a7333ji@gmail.com"
+                      className="text-sm font-semibold text-textPrimary hover:text-accent transition-colors block"
+                    >
+                      a7333ji@gmail.com
+                    </a>
+                    <a
                       href="mailto:contact@gurukulam.edu"
-                      className="text-sm font-semibold text-textPrimary hover:text-accent transition-colors"
+                      className="text-xs text-textSecondary hover:text-accent transition-colors block mt-0.5"
                     >
                       contact@gurukulam.edu
                     </a>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
           {/* Brand Vision */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-full bg-accent text-on-accent flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded-full bg-accent text-on-accent flex items-center justify-center font-bold text-xs shadow-subtle">
                 GURU
               </div>
               <span className="font-bold text-lg text-textPrimary">Gurukulam</span>
@@ -17,9 +18,25 @@ export function Footer() {
             <p className="text-sm text-textSecondary max-w-md leading-relaxed">
               Dedicated to reviving and disseminating the profound spiritual, philosophical, and moral wisdom of Sanatan Dharma through authentic Vedic scriptures, digitized Sanskrit texts, and modern educational tools.
             </p>
+            <div className="pt-2 flex flex-wrap gap-4 text-xs text-textMuted">
+              <a
+                href="tel:+919986279053"
+                className="inline-flex items-center space-x-1.5 hover:text-accent transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-accent" />
+                <span>+91 9986279053</span>
+              </a>
+              <a
+                href="mailto:a7333ji@gmail.com"
+                className="inline-flex items-center space-x-1.5 hover:text-accent transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-accent" />
+                <span>a7333ji@gmail.com</span>
+              </a>
+            </div>
           </div>
 
-          {/* Scripture Links */}
+          {/* Scriptures & Tools */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold text-textMuted uppercase tracking-wider">
               Scriptures & Tools
@@ -27,51 +44,66 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/books/ramayana" className="text-textSecondary hover:text-accent transition-colors">
-                  श्री वाल्मीकि रामायण
+                  श्री वाल्मीकि रामायण (24,000 Shlokas)
                 </Link>
               </li>
               <li>
                 <Link href="/books/shlok-mala/1" className="text-textSecondary hover:text-accent transition-colors">
-                  श्लोक माला (Shlok Mala)
+                  श्लोक माला (Audio Recitation)
                 </Link>
               </li>
               <li>
                 <Link href="/keyboard" className="text-textSecondary hover:text-accent transition-colors">
-                  Vedic Virtual Keyboard
+                  Vedic Devanagari Virtual Keyboard
                 </Link>
               </li>
               <li>
                 <Link href="/books" className="text-textSecondary hover:text-accent transition-colors">
-                  Library & PDFs
+                  Digital Granthalaya & PDFs
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Gurukul Links */}
+          {/* Gurukul & Philosophy */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold text-textMuted uppercase tracking-wider">
-              Organization
+              About & Campus
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/about" className="text-textSecondary hover:text-accent transition-colors">
-                  About Us
+                  About Gurukulam
+                </Link>
+              </li>
+              <li>
+                <Link href="/vision-mission" className="text-textSecondary hover:text-accent transition-colors">
+                  Vision & Mission
+                </Link>
+              </li>
+              <li>
+                <Link href="/sanatan-dharma" className="text-textSecondary hover:text-accent transition-colors">
+                  Sanatan Dharma Philosophy
+                </Link>
+              </li>
+              <li>
+                <Link href="/team" className="text-textSecondary hover:text-accent transition-colors">
+                  Faculty & Acharyas
                 </Link>
               </li>
               <li>
                 <Link href="/campus" className="text-textSecondary hover:text-accent transition-colors">
-                  Campus & Life
+                  Campus & Dinacharya Schedule
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="text-textSecondary hover:text-accent transition-colors">
-                  Vedic Programs
+                <Link href="/gallery" className="text-textSecondary hover:text-accent transition-colors">
+                  Photo Gallery
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-textSecondary hover:text-accent transition-colors">
-                  Contact & Support
+                  Contact & Campus Visits
                 </Link>
               </li>
             </ul>
@@ -81,8 +113,8 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between text-xs text-textMuted gap-4">
           <p>© {new Date().getFullYear()} Gurukulam. All rights reserved.</p>
-          <p className="text-center sm:text-right">
-            सत्यमेव जयते नानृतम् • Dharmo Rakshati Rakshitah
+          <p className="text-center sm:text-right font-devanagari">
+            सत्यमेव जयते नानृतम् • धर्मो रक्षति रक्षितः
           </p>
         </div>
       </div>
