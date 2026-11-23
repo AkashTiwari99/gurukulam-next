@@ -45,6 +45,15 @@ export function ShlokMalaClient({ data }: { data: MalaData }) {
 
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
+  // Prevent memory leaks / orphaned audio when navigating away
+  React.useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
+
   const getAudioSrc = (audioFile: string) => {
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     return `${basePath}/audio/shlok_mala/${audioFile}`;
@@ -230,9 +239,12 @@ export function ShlokMalaClient({ data }: { data: MalaData }) {
         );
       })}
 
-      {/* Floating Bottom Audio Player Bar */}
+      {/* Floating Bottom Audio Player Bar with Safe-Area Inset Support */}
       {activeShlok && (
-        <div className="fixed bottom-4 left-4 right-4 max-w-2xl mx-auto z-40 bg-surface/95 backdrop-blur-md border border-border-strong rounded-3xl p-3 sm:p-4 shadow-elevated animate-fadeIn">
+        <div
+          style={{ bottom: 'max(1rem, env(safe-area-inset-bottom, 0px))' }}
+          className="fixed left-4 right-4 max-w-2xl mx-auto z-40 bg-surface/95 backdrop-blur-md border border-border-strong rounded-3xl p-3 sm:p-4 shadow-elevated animate-fadeIn"
+        >
           <div className="flex items-center justify-between gap-3 mb-2">
             <div className="flex items-center space-x-3 overflow-hidden">
               <button

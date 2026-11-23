@@ -101,6 +101,7 @@ export function VedicKeyboard() {
   const [matraMode, setMatraMode] = React.useState(false);
   const [selectedFont, setSelectedFont] = React.useState<'siddhanta' | 'adishila'>('siddhanta');
   const [copied, setCopied] = React.useState(false);
+  const [deviceKeyboardEnabled, setDeviceKeyboardEnabled] = React.useState(false);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const insertChar = (char: string) => {
@@ -205,11 +206,50 @@ export function VedicKeyboard() {
           ref={textareaRef}
           value={text}
           onChange={(e) => setText(e.target.value)}
+          inputMode={deviceKeyboardEnabled ? 'text' : 'none'}
           placeholder="यहाँ वैदिक संस्कृत टाइप करें (Type Vedic Sanskrit here)..."
           className={`w-full h-32 sm:h-36 bg-transparent text-textPrimary placeholder-textMuted ${
             selectedFont === 'siddhanta' ? 'font-siddhanta' : 'font-adishila'
           } text-xl sm:text-2xl leading-relaxed resize-y focus:outline-none`}
         />
+
+        {/* Canvas Footer: Quick Punctuation & Tablet Safety Toggle */}
+        <div className="pt-3 border-t border-border-subtle flex flex-wrap items-center justify-between gap-2 text-xs">
+          {/* Quick Frequent Marks */}
+          <div className="flex items-center space-x-1">
+            <span className="text-[11px] text-textMuted hidden sm:inline mr-1">Quick:</span>
+            {['।', '॥', 'ॐ', '्', 'ऽ'].map((sym) => (
+              <button
+                key={sym}
+                type="button"
+                onClick={() => insertChar(sym)}
+                className="px-2 py-0.5 rounded-lg border border-border-subtle bg-subtle/70 hover:bg-accent-soft hover:text-accent font-devanagari font-bold text-xs transition-colors min-h-[30px]"
+              >
+                {sym}
+              </button>
+            ))}
+          </div>
+
+          {/* Stats & Tablet Crash Prevention */}
+          <div className="flex items-center space-x-3 text-textMuted">
+            <span className="text-[11px] font-mono">
+              {text.trim() ? text.trim().split(/\s+/).length : 0} शब्द • {text.length} वर्ण
+            </span>
+
+            <button
+              type="button"
+              onClick={() => setDeviceKeyboardEnabled(!deviceKeyboardEnabled)}
+              className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold border transition-colors flex items-center space-x-1 ${
+                deviceKeyboardEnabled
+                  ? 'border-status-info bg-status-info/10 text-status-info'
+                  : 'border-status-success bg-status-success/10 text-status-success'
+              }`}
+              title="टैबलेट / फोन पर ऑन-स्क्रीन कीबोर्ड क्रैश रोकने के लिए टॉगल करें"
+            >
+              <span>{deviceKeyboardEnabled ? '📱 OS Keypad: Active' : '🛡️ Tablet Mode (Crash-Proof)'}</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Virtual Keyboard Shell */}

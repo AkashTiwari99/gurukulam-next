@@ -82,6 +82,9 @@ export default function HomePage() {
               <img
                 src="/images/card4.jpg"
                 alt="Vedic Wisdom Manuscripts"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-accent text-on-accent uppercase tracking-wider shadow-subtle">
@@ -99,7 +102,7 @@ export default function HomePage() {
               </div>
               <div className="pt-3 border-t border-border-subtle">
                 <a
-                  href="/books"
+                  href="/library"
                   className="text-xs font-semibold text-accent flex items-center space-x-1 group-hover:translate-x-0.5 transition-transform"
                 >
                   <span>Explore Wisdom Books</span>
