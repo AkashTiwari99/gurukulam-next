@@ -8,14 +8,6 @@ import { FontSizeControl } from '../theme/FontSizeControl';
 import { FastSearchModal } from '../search/FastSearchModal';
 import { Search, Menu, X, ChevronDown, BookOpen } from 'lucide-react';
 
-const LIBRARY_LINKS = [
-  { href: '/library', label: 'All Library & Books', desc: 'डिजिटल पुस्तकालय एवं संग्रह' },
-  { href: '/books/ramayana', label: 'श्रीमद्वाल्मीकिरामायणम्', desc: '७ काण्ड, ६४५ सर्ग, २४,००० श्लोक' },
-  { href: '/books/shlok-mala/1', label: 'श्लोक माला १', desc: '१२० चयनित श्लोक (ऑडियो सहित)' },
-  { href: '/books/shlok-mala/2', label: 'श्लोक माला २', desc: '२२९ प्रेरक नीति श्लोक' },
-  { href: '/library#pdfs', label: 'शोध ग्रन्थ एवं PDFs', desc: 'डाउनलोड व ऑनलाइन अध्ययन ग्रन्थ' },
-];
-
 const ABOUT_LINKS = [
   { href: '/about', label: 'About Gurukulam', desc: 'Our origin, heritage & pedagogies' },
   { href: '/vision-mission', label: 'Vision & Mission', desc: 'Preserving scriptures & holistic education' },
@@ -34,19 +26,15 @@ const DIRECT_NAV_LINKS = [
 export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [mobileLibraryOpen, setMobileLibraryOpen] = React.useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = React.useState(false);
-  const [libraryDropdownOpen, setLibraryDropdownOpen] = React.useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
 
-  const libraryRef = React.useRef<HTMLDivElement>(null);
   const aboutRef = React.useRef<HTMLDivElement>(null);
 
   // Close menus on route change
   React.useEffect(() => {
     setMobileMenuOpen(false);
-    setLibraryDropdownOpen(false);
     setAboutDropdownOpen(false);
   }, [pathname]);
 
@@ -55,14 +43,10 @@ export function Navbar() {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setMobileMenuOpen(false);
-        setLibraryDropdownOpen(false);
         setAboutDropdownOpen(false);
       }
     };
     const handleClickOutside = (e: MouseEvent) => {
-      if (libraryRef.current && !libraryRef.current.contains(e.target as Node)) {
-        setLibraryDropdownOpen(false);
-      }
       if (aboutRef.current && !aboutRef.current.contains(e.target as Node)) {
         setAboutDropdownOpen(false);
       }
@@ -111,58 +95,17 @@ export function Navbar() {
               Home
             </Link>
 
-            {/* 1. Unified Library Dropdown */}
-            <div
-              ref={libraryRef}
-              className="relative"
-              onMouseEnter={() => setLibraryDropdownOpen(true)}
-              onMouseLeave={() => setLibraryDropdownOpen(false)}
+            {/* Direct Library Link */}
+            <Link
+              href="/library"
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
+                isLibraryActive
+                  ? 'bg-accent-soft text-accent font-semibold'
+                  : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
+              }`}
             >
-              <Link
-                href="/library"
-                onClick={() => setLibraryDropdownOpen(false)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center space-x-1 transition-all duration-150 ${
-                  isLibraryActive
-                    ? 'bg-accent-soft text-accent font-semibold'
-                    : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
-                }`}
-                aria-expanded={libraryDropdownOpen}
-                aria-haspopup="true"
-              >
-                <span>Library</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-150 ${
-                    libraryDropdownOpen ? 'rotate-180 text-accent' : ''
-                  }`}
-                />
-              </Link>
-
-              {libraryDropdownOpen && (
-                <div className="absolute left-0 mt-1 w-72 rounded-2xl bg-surface border border-border-subtle shadow-elevated p-2 space-y-1 animate-fadeIn z-50">
-                  {LIBRARY_LINKS.map((subLink) => {
-                    const isSubActive =
-                      pathname === subLink.href ||
-                      (subLink.href !== '/library' && pathname.startsWith(subLink.href));
-                    return (
-                      <Link
-                        key={subLink.href}
-                        href={subLink.href}
-                        className={`block px-3 py-2 rounded-xl text-left transition-colors ${
-                          isSubActive
-                            ? 'bg-accent-soft text-accent'
-                            : 'hover:bg-subtle text-textPrimary'
-                        }`}
-                      >
-                        <div className="text-sm font-medium font-devanagari">{subLink.label}</div>
-                        <div className="text-[11px] text-textMuted leading-tight mt-0.5">
-                          {subLink.desc}
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+              Library
+            </Link>
 
             {/* Direct Links */}
             {DIRECT_NAV_LINKS.map((link) => {
@@ -281,41 +224,17 @@ export function Navbar() {
               Home
             </Link>
 
-            {/* Mobile Library Accordion */}
-            <div className="border-y border-border-subtle py-1 my-1">
-              <button
-                type="button"
-                onClick={() => setMobileLibraryOpen(!mobileLibraryOpen)}
-                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium text-textPrimary hover:bg-subtle"
-              >
-                <span>Library (ग्रन्थागार)</span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-150 ${
-                    mobileLibraryOpen ? 'rotate-180 text-accent' : ''
-                  }`}
-                />
-              </button>
-              {mobileLibraryOpen && (
-                <div className="pl-4 pr-2 space-y-1 mt-1">
-                  {LIBRARY_LINKS.map((subLink) => {
-                    const isSubActive = pathname === subLink.href;
-                    return (
-                      <Link
-                        key={subLink.href}
-                        href={subLink.href}
-                        className={`block px-3 py-2 rounded-lg text-xs font-medium font-devanagari transition-colors ${
-                          isSubActive
-                            ? 'bg-accent-soft text-accent font-semibold'
-                            : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
-                        }`}
-                      >
-                        {subLink.label}
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+            {/* Direct Mobile Library Link */}
+            <Link
+              href="/library"
+              className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                isLibraryActive
+                  ? 'bg-accent-soft text-accent font-semibold'
+                  : 'text-textPrimary hover:bg-subtle'
+              }`}
+            >
+              Library (ग्रन्थागार)
+            </Link>
 
             {/* Direct Links */}
             {DIRECT_NAV_LINKS.map((link) => {

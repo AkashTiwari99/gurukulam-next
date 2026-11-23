@@ -38,24 +38,23 @@ export default function HomePage() {
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
             <a
-              href="/books/ramayana"
+              href="/about"
               className="px-7 py-3 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-all shadow-subtle hover:shadow-elevated flex items-center space-x-2 group"
             >
-              <BookOpen className="w-4 h-4" />
-              <span>वाल्मीकि रामायण पढ़ें (Read Ramayana)</span>
+              <span>गुरुकुल परिचय (About Gurukulam)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="/books/shlok-mala/1"
+              href="/keyboard"
               className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textPrimary text-sm font-semibold transition-all shadow-subtle"
             >
-              श्लोक माला (Chanting Audio)
+              वैदिक कीबोर्ड (Vedic Keyboard)
             </a>
             <a
-              href="/keyboard"
+              href="/campus"
               className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textSecondary hover:text-textPrimary text-sm font-medium transition-all"
             >
-              वैदिक कीबोर्ड (Vedic Keyboard)
+              परिसर दर्शन (Campus)
             </a>
           </div>
         </div>
@@ -162,10 +161,10 @@ export default function HomePage() {
               </div>
               <div className="pt-3 border-t border-border-subtle">
                 <a
-                  href="/books/ramayana"
+                  href="/library"
                   className="text-xs font-semibold text-accent flex items-center space-x-1 group-hover:translate-x-0.5 transition-transform"
                 >
-                  <span>Read 645 Sargas</span>
+                  <span>Explore in Library</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
