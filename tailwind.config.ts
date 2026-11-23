@@ -39,7 +39,8 @@ const config: Config = {
         elevated: 'var(--shadow-md)',
       },
       fontFamily: {
-        devanagari: ['"Noto Serif Devanagari"', 'serif'],
+        vedic: ['"Adishila SanVedic"', '"AdishilaSanVedic"', '"Siddhanta"', '"Noto Serif Devanagari"', 'serif'],
+        devanagari: ['"Adishila SanVedic"', '"AdishilaSanVedic"', '"Siddhanta"', '"Noto Serif Devanagari"', 'serif'],
         sans: ['"Poppins"', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },

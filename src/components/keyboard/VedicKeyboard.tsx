@@ -148,9 +148,14 @@ export function VedicKeyboard() {
       {/* Typing & Preview Area */}
       <div className="bg-surface border border-border-subtle rounded-3xl p-5 sm:p-6 shadow-subtle space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
-          <span className="text-xs font-semibold text-textMuted uppercase tracking-wider">
-            Vedic Sanskrit Typing Canvas
-          </span>
+          <div className="flex items-center space-x-2">
+            <span className="text-xs font-semibold text-textMuted uppercase tracking-wider">
+              Vedic Sanskrit Typing Canvas
+            </span>
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-soft text-accent border border-accent/20">
+              Adishila SanVedic
+            </span>
+          </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setText('')}
@@ -177,7 +182,7 @@ export function VedicKeyboard() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="यहाँ वैदिक संस्कृत टाइप करें (Type Vedic Sanskrit here)..."
-          className="w-full h-32 sm:h-36 bg-transparent text-textPrimary placeholder-textMuted font-devanagari text-xl sm:text-2xl leading-relaxed resize-y focus:outline-none"
+          className="w-full h-32 sm:h-36 bg-transparent text-textPrimary placeholder-textMuted font-vedic text-xl sm:text-2xl leading-relaxed resize-y focus:outline-none"
         />
       </div>
 
@@ -272,7 +277,7 @@ export function VedicKeyboard() {
                     onClick={() => insertChar(charToInsert)}
                     className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                   >
-                    <span className="font-devanagari text-lg sm:text-xl font-bold text-textPrimary group-hover:text-accent">
+                    <span className="font-vedic text-lg sm:text-xl font-bold text-textPrimary group-hover:text-accent">
                       {charToInsert || '—'}
                     </span>
                     <span className="text-[9px] text-textMuted">{v.roman}</span>
@@ -290,7 +295,7 @@ export function VedicKeyboard() {
                   onClick={() => insertChar(c.dev)}
                   className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-lg sm:text-xl font-bold text-textPrimary group-hover:text-accent">
+                  <span className="font-vedic text-lg sm:text-xl font-bold text-textPrimary group-hover:text-accent">
                     {c.dev}
                   </span>
                   <span className="text-[9px] text-textMuted">{c.roman}</span>
@@ -307,7 +312,7 @@ export function VedicKeyboard() {
                   onClick={() => insertChar(m.char)}
                   className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent">
+                  <span className="font-vedic text-xl sm:text-2xl font-bold text-accent">
                     {`◌${m.char}`}
                   </span>
                   <span className="text-[9px] text-textMuted truncate max-w-[55px]">
@@ -326,7 +331,7 @@ export function VedicKeyboard() {
                   onClick={() => insertChar(s.char)}
                   className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent">
+                  <span className="font-vedic text-xl sm:text-2xl font-bold text-accent">
                     {`◌${s.char}`}
                   </span>
                   <span className="text-[9px] text-textMuted truncate max-w-[55px]">
@@ -345,7 +350,7 @@ export function VedicKeyboard() {
                   onClick={() => insertChar(s.char)}
                   className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-textPrimary group-hover:text-accent">
+                  <span className="font-vedic text-xl sm:text-2xl font-bold text-textPrimary group-hover:text-accent">
                     {s.char}
                   </span>
                   <span className="text-[9px] text-textMuted">{s.roman}</span>
@@ -362,7 +367,7 @@ export function VedicKeyboard() {
                   onClick={() => insertChar(n.dev)}
                   className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-textPrimary group-hover:text-accent">
+                  <span className="font-vedic text-xl sm:text-2xl font-bold text-textPrimary group-hover:text-accent">
                     {n.dev}
                   </span>
                   <span className="text-[9px] text-textMuted">{n.roman}</span>
