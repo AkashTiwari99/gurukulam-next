@@ -99,6 +99,7 @@ export function VedicKeyboard() {
   const [text, setText] = React.useState('');
   const [activeTab, setActiveTab] = React.useState<'vowels' | 'consonants' | 'vedic' | 'sama' | 'specials' | 'numbers'>('vowels');
   const [matraMode, setMatraMode] = React.useState(false);
+  const [selectedFont, setSelectedFont] = React.useState<'siddhanta' | 'adishila'>('siddhanta');
   const [copied, setCopied] = React.useState(false);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
@@ -147,14 +148,37 @@ export function VedicKeyboard() {
     <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Typing & Preview Area */}
       <div className="bg-surface border border-border-subtle rounded-3xl p-5 sm:p-6 shadow-subtle space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
+        <div className="flex flex-wrap items-center justify-between pb-3 border-b border-border-subtle gap-2">
           <div className="flex items-center space-x-2">
             <span className="text-xs font-semibold text-textMuted uppercase tracking-wider">
-              Vedic Sanskrit Typing Canvas
+              Vedic Typing Canvas
             </span>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-soft text-accent border border-accent/20">
-              Adishila SanVedic
-            </span>
+            <div className="flex items-center rounded-full border border-border-subtle bg-subtle/60 p-0.5 text-[11px]">
+              <button
+                type="button"
+                onClick={() => setSelectedFont('siddhanta')}
+                className={`px-2.5 py-0.5 rounded-full font-medium transition-colors ${
+                  selectedFont === 'siddhanta'
+                    ? 'bg-accent text-on-accent shadow-xs'
+                    : 'text-textSecondary hover:text-textPrimary'
+                }`}
+                title="Use Siddhanta Font"
+              >
+                Siddhanta
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedFont('adishila')}
+                className={`px-2.5 py-0.5 rounded-full font-medium transition-colors ${
+                  selectedFont === 'adishila'
+                    ? 'bg-accent text-on-accent shadow-xs'
+                    : 'text-textSecondary hover:text-textPrimary'
+                }`}
+                title="Use Adishila SanVedic Font"
+              >
+                Adishila SanVedic
+              </button>
+            </div>
           </div>
           <div className="flex items-center space-x-2">
             <button
@@ -182,7 +206,9 @@ export function VedicKeyboard() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="यहाँ वैदिक संस्कृत टाइप करें (Type Vedic Sanskrit here)..."
-          className="w-full h-32 sm:h-36 bg-transparent text-textPrimary placeholder-textMuted font-vedic text-xl sm:text-2xl leading-relaxed resize-y focus:outline-none"
+          className={`w-full h-32 sm:h-36 bg-transparent text-textPrimary placeholder-textMuted ${
+            selectedFont === 'siddhanta' ? 'font-siddhanta' : 'font-adishila'
+          } text-xl sm:text-2xl leading-relaxed resize-y focus:outline-none`}
         />
       </div>
 
