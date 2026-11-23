@@ -38,6 +38,21 @@ export function KandaNavigation({
   const prevSarga = currentSarga > 1 ? currentSarga - 1 : null;
   const nextSarga = currentSarga < totalSargas ? currentSarga + 1 : null;
 
+  const currentKandaIndex = KANDAS_LIST.findIndex((k) => k.slug === currentKanda);
+  const prevKanda = currentKandaIndex > 0 ? KANDAS_LIST[currentKandaIndex - 1] : null;
+  const nextKanda = currentKandaIndex >= 0 && currentKandaIndex < KANDAS_LIST.length - 1 ? KANDAS_LIST[currentKandaIndex + 1] : null;
+
+  // Lock body scroll when sarga modal is open
+  React.useEffect(() => {
+    if (sargaModalOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [sargaModalOpen]);
+
   // Click outside listener
   React.useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -77,6 +92,16 @@ export function KandaNavigation({
               <ChevronLeft className="w-4 h-4 flex-shrink-0" />
               <span className="hidden md:inline">पूर्व सर्ग {prevSarga}</span>
               <span className="md:hidden">सर्ग {prevSarga}</span>
+            </button>
+          ) : prevKanda ? (
+            <button
+              onClick={() => navigateTo(prevKanda.slug, prevKanda.total)}
+              className="flex items-center space-x-1 px-2.5 sm:px-3 py-1.5 rounded-full border border-border-subtle hover:bg-subtle text-xs sm:text-sm font-medium text-textSecondary hover:text-accent transition-colors min-h-[38px]"
+              aria-label={`पूर्व काण्ड ${prevKanda.name}`}
+            >
+              <ChevronLeft className="w-4 h-4 flex-shrink-0" />
+              <span className="hidden md:inline">← {prevKanda.name}</span>
+              <span className="md:hidden">← पूर्व</span>
             </button>
           ) : (
             <Link
@@ -153,10 +178,23 @@ export function KandaNavigation({
               <span className="md:hidden">सर्ग {nextSarga}</span>
               <ChevronRight className="w-4 h-4 flex-shrink-0" />
             </button>
+          ) : nextKanda ? (
+            <button
+              onClick={() => navigateTo(nextKanda.slug, 1)}
+              className="flex items-center space-x-1 px-2.5 sm:px-3 py-1.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs sm:text-sm font-semibold transition-colors min-h-[38px]"
+              aria-label={`अग्रिम काण्ड ${nextKanda.name}`}
+            >
+              <span className="hidden md:inline">{nextKanda.name} →</span>
+              <span className="md:hidden">अग्रिम →</span>
+              <ChevronRight className="w-4 h-4 flex-shrink-0" />
+            </button>
           ) : (
-            <div className="text-right text-xs text-textMuted font-medium pr-1">
-              काण्ड पूर्ण
-            </div>
+            <Link
+              href="/books/ramayana"
+              className="flex items-center space-x-1 px-2.5 sm:px-3 py-1.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs sm:text-sm font-semibold transition-colors min-h-[38px]"
+            >
+              <span>सम्पूर्ण →</span>
+            </Link>
           )}
         </div>
       </div>

@@ -21,6 +21,7 @@ node_modules
 *.pem
 __pycache__/
 *.pyc
+*.tsbuildinfo
 
 # debug
 npm-debug.log*

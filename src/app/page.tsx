@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import {
   Sparkles,
   ArrowRight,
@@ -37,25 +38,25 @@ export default function HomePage() {
 
           {/* Action Buttons (Keyboard link removed as requested; accessible in Navbar) */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <a
+            <Link
               href="/about"
               className="px-7 py-3 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-all shadow-subtle hover:shadow-elevated flex items-center space-x-2 group min-h-[44px]"
             >
               <span>गुरुकुल परिचय (About Gurukulam)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
+            </Link>
+            <Link
               href="/campus"
               className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textPrimary text-sm font-semibold transition-all shadow-subtle min-h-[44px] flex items-center"
             >
               परिसर दर्शन (Campus Life)
-            </a>
-            <a
+            </Link>
+            <Link
               href="/programs"
               className="px-6 py-3 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textSecondary hover:text-textPrimary text-sm font-medium transition-all min-h-[44px] flex items-center"
             >
               अभ्यासक्रम (Programs)
-            </a>
+            </Link>
           </div>
 
           {/* Heritage Metrics Strip */}
@@ -139,13 +140,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="pt-3 border-t border-border-subtle">
-                <a
+                <Link
                   href="/about"
                   className="text-xs font-semibold text-accent flex items-center space-x-1 group-hover:translate-x-0.5 transition-transform"
                 >
                   <span>Learn About Philosophy</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -156,6 +157,8 @@ export default function HomePage() {
               <img
                 src="/images/card3.jpg"
                 alt="Traditional Gurukul Education System"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -169,13 +172,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="pt-3 border-t border-border-subtle">
-                <a
+                <Link
                   href="/campus"
                   className="text-xs font-semibold text-accent flex items-center space-x-1 group-hover:translate-x-0.5 transition-transform"
                 >
                   <span>Discover Campus Life</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -186,6 +189,8 @@ export default function HomePage() {
               <img
                 src="/images/card2.jpg"
                 alt="Valmiki Ramayana Scripture Study"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -199,13 +204,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="pt-3 border-t border-border-subtle">
-                <a
+                <Link
                   href="/library"
                   className="text-xs font-semibold text-accent flex items-center space-x-1 group-hover:translate-x-0.5 transition-transform"
                 >
                   <span>Explore in Library</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -261,9 +266,9 @@ export default function HomePage() {
               </p>
             </div>
             <div className="mt-6 pt-3 border-t border-border-subtle">
-              <a href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
+              <Link href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
                 Explore Curriculum →
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -281,9 +286,9 @@ export default function HomePage() {
               </p>
             </div>
             <div className="mt-6 pt-3 border-t border-border-subtle">
-              <a href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
+              <Link href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
                 Explore Curriculum →
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -298,9 +303,9 @@ export default function HomePage() {
               </p>
             </div>
             <div className="mt-6 pt-3 border-t border-border-subtle">
-              <a href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
+              <Link href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
                 Explore Curriculum →
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -315,9 +320,9 @@ export default function HomePage() {
               </p>
             </div>
             <div className="mt-6 pt-3 border-t border-border-subtle">
-              <a href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
+              <Link href="/programs" className="text-xs font-semibold text-accent hover:text-accent-hover">
                 Explore Curriculum →
-              </a>
+              </Link>
             </div>
           </div>
         </div>

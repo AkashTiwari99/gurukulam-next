@@ -371,7 +371,7 @@ export function LibraryHub() {
                     href={b.linkHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1 text-xs font-semibold text-accent hover:text-accent-hover transition-colors"
+                    className="inline-flex items-center space-x-1 text-xs font-semibold text-accent hover:text-accent-hover transition-colors min-h-[44px] py-1"
                   >
                     <span>Read Online</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -380,7 +380,7 @@ export function LibraryHub() {
                   <a
                     href={b.pdfHref || b.linkHref}
                     download
-                    className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-xl border border-border-subtle bg-subtle hover:bg-accent-soft hover:text-accent text-textPrimary text-xs font-medium transition-colors"
+                    className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl border border-border-subtle bg-subtle hover:bg-accent-soft hover:text-accent text-textPrimary text-xs font-medium transition-colors min-h-[44px]"
                     title="Download PDF to device"
                   >
                     <Download className="w-3.5 h-3.5" />

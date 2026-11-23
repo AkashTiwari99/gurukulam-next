@@ -23,6 +23,16 @@ interface PageProps {
   };
 }
 
+const KANDAS_ORDER: { slug: string; name: string; total: number }[] = [
+  { slug: 'balakanda', name: 'बालकाण्ड', total: 77 },
+  { slug: 'ayodhyakanda', name: 'अयोध्याकाण्ड', total: 119 },
+  { slug: 'aranyakanda', name: 'आरण्यकाण्ड', total: 75 },
+  { slug: 'kishkindhakanda', name: 'किष्किन्धाकाण्ड', total: 67 },
+  { slug: 'sundarakanda', name: 'सुन्दरकाण्ड', total: 68 },
+  { slug: 'yuddhakanda', name: 'युद्धकाण्ड', total: 128 },
+  { slug: 'uttarakanda', name: 'उत्तरकाण्ड', total: 111 },
+];
+
 const KANDAS_TOTAL_MAP: Record<string, number> = {
   balakanda: 77,
   ayodhyakanda: 119,
@@ -87,6 +97,9 @@ export default function SargaPage({ params }: PageProps) {
   }
 
   const totalSargas = KANDAS_TOTAL_MAP[params.kanda] || data.sarga;
+  const currentKandaIndex = KANDAS_ORDER.findIndex((k) => k.slug === params.kanda);
+  const nextKanda = currentKandaIndex >= 0 && currentKandaIndex < KANDAS_ORDER.length - 1 ? KANDAS_ORDER[currentKandaIndex + 1] : null;
+  const prevKanda = currentKandaIndex > 0 ? KANDAS_ORDER[currentKandaIndex - 1] : null;
 
   return (
     <div className="min-h-screen bg-canvas pb-24">
@@ -109,13 +122,20 @@ export default function SargaPage({ params }: PageProps) {
         />
 
         {/* Bottom Sarga Jump Links */}
-        <div className="mt-16 pt-8 border-t border-border-subtle flex items-center justify-between">
+        <div className="mt-16 pt-8 border-t border-border-subtle flex items-center justify-between gap-3">
           {data.sarga > 1 ? (
             <Link
               href={`/books/ramayana/${params.kanda}/sarga-${data.sarga - 1}`}
               className="px-5 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-sm font-medium text-textPrimary hover:text-accent transition-colors shadow-subtle min-h-[44px] flex items-center"
             >
               ← पूर्व सर्ग ({data.sarga - 1})
+            </Link>
+          ) : prevKanda ? (
+            <Link
+              href={`/books/ramayana/${prevKanda.slug}/sarga-${prevKanda.total}`}
+              className="px-5 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-sm font-medium text-textPrimary hover:text-accent transition-colors shadow-subtle min-h-[44px] flex items-center"
+            >
+              ← पूर्व काण्ड: {prevKanda.name} (सर्ग {prevKanda.total})
             </Link>
           ) : (
             <Link
@@ -133,8 +153,20 @@ export default function SargaPage({ params }: PageProps) {
             >
               अग्रिम सर्ग ({data.sarga + 1}) →
             </Link>
+          ) : nextKanda ? (
+            <Link
+              href={`/books/ramayana/${nextKanda.slug}/sarga-1`}
+              className="px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-colors shadow-subtle min-h-[44px] flex items-center"
+            >
+              अग्रिम काण्ड: {nextKanda.name} (सर्ग १) →
+            </Link>
           ) : (
-            <span className="text-xs text-textMuted font-medium">काण्ड समाप्त</span>
+            <Link
+              href="/books/ramayana"
+              className="px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-colors shadow-subtle min-h-[44px] flex items-center"
+            >
+              रामायण सम्पूर्ण (मङ्गल श्लोक) →
+            </Link>
           )}
         </div>
       </div>

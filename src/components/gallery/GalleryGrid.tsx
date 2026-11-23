@@ -119,6 +119,17 @@ export function GalleryGrid() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex, filteredItems.length]);
 
+  // Lock body scroll when lightbox is open
+  React.useEffect(() => {
+    if (selectedIndex !== null) {
+      const orig = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = orig;
+      };
+    }
+  }, [selectedIndex]);
+
   return (
     <div className="space-y-8">
       {/* Category Filter Pills */}
@@ -221,7 +232,7 @@ export function GalleryGrid() {
           <button
             type="button"
             onClick={() => setSelectedIndex(null)}
-            className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-surface/20 text-white hover:bg-surface/40 transition-colors"
+            className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-surface/20 text-white hover:bg-surface/40 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Close image lightbox"
           >
             <X className="w-6 h-6" />
@@ -234,7 +245,7 @@ export function GalleryGrid() {
               e.stopPropagation();
               setSelectedIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : filteredItems.length - 1));
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-surface/20 text-white hover:bg-surface/40 transition-colors z-50"
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-surface/20 text-white hover:bg-surface/40 transition-colors z-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -247,7 +258,7 @@ export function GalleryGrid() {
               e.stopPropagation();
               setSelectedIndex((prev) => (prev !== null && prev < filteredItems.length - 1 ? prev + 1 : 0));
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-surface/20 text-white hover:bg-surface/40 transition-colors z-50"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-surface/20 text-white hover:bg-surface/40 transition-colors z-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Next image"
           >
             <ChevronRight className="w-6 h-6" />

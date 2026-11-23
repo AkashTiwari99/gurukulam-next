@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { Sparkles, Compass, BookOpen, Heart, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { Sparkles, Compass, BookOpen, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'About Gurukulam | Reviving Ancient Wisdom',
@@ -67,6 +68,37 @@ export default function AboutPage() {
             <p className="text-xs text-textSecondary leading-relaxed">
               Cultivating inner purity, truthfulness (Satya), self-discipline, and compassion for all living beings.
             </p>
+          </div>
+        </div>
+
+        {/* Exploratory Pathways / CTA */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-subtle/50 border border-border-subtle text-center space-y-4 max-w-3xl mx-auto">
+          <h3 className="font-devanagari text-2xl font-bold text-textPrimary">
+            आगे की यात्रा आरम्भ करें
+          </h3>
+          <p className="text-xs sm:text-sm text-textSecondary leading-relaxed">
+            आश्रम परिसर, नियमित अभ्यासक्रम अथवा डिजिटल ग्रन्थागार के माध्यम से प्राचीन वाङ्मय का स्वाध्याय करें।
+          </p>
+          <div className="pt-2 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/library"
+              className="inline-flex items-center space-x-1.5 px-6 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs font-semibold shadow-subtle transition-colors min-h-[44px]"
+            >
+              <span>डिजिटल ग्रन्थागार (Library)</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <Link
+              href="/campus"
+              className="inline-flex items-center space-x-1.5 px-6 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textPrimary text-xs font-semibold transition-colors min-h-[44px]"
+            >
+              <span>परिसर दर्शन (Campus)</span>
+            </Link>
+            <Link
+              href="/programs"
+              className="inline-flex items-center space-x-1.5 px-6 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textSecondary hover:text-textPrimary text-xs font-semibold transition-colors min-h-[44px]"
+            >
+              <span>अभ्यासक्रम (Programs)</span>
+            </Link>
           </div>
         </div>
       </div>

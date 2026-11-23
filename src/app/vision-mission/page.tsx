@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { Sparkles, Compass, ShieldCheck, Heart, Leaf, Target, TrendingUp, Lightbulb } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -153,12 +154,12 @@ export default function VisionMissionPage() {
             Digitizing 100+ unpublished Sanskrit manuscripts, developing an offline mobile PWA Vedic reader, and inaugurating global Gurukul teacher fellowships.
           </p>
           <div className="pt-2">
-            <a
+            <Link
               href="/contact"
-              className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs font-semibold shadow-subtle transition-colors"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs font-semibold shadow-subtle transition-colors min-h-[44px]"
             >
               <span>Join our Mission / Volunteer</span>
-            </a>
+            </Link>
           </div>
         </section>
       </div>

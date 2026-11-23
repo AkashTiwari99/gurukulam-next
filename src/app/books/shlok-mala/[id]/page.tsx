@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ShlokMalaClient } from '@/components/reader/ShlokMalaClient';
 import shlokMala1 from '@/content/shlok_mala/shlok_mala_1.json';
@@ -36,26 +37,26 @@ export default function ShlokMalaPage({ params }: PageProps) {
         {/* Header */}
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
-            <a
+            <Link
               href="/books/shlok-mala/1"
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[38px] flex items-center ${
                 malaNum === 1
                   ? 'bg-accent text-on-accent shadow-subtle'
                   : 'bg-surface border border-border-subtle text-textSecondary hover:border-accent'
               }`}
             >
               श्लोक माला १
-            </a>
-            <a
+            </Link>
+            <Link
               href="/books/shlok-mala/2"
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[38px] flex items-center ${
                 malaNum === 2
                   ? 'bg-accent text-on-accent shadow-subtle'
                   : 'bg-surface border border-border-subtle text-textSecondary hover:border-accent'
               }`}
             >
               श्लोक माला २
-            </a>
+            </Link>
           </div>
 
           <h1 className="font-devanagari text-3xl sm:text-4xl font-bold text-textPrimary">

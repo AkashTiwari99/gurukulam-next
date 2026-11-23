@@ -27,6 +27,11 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
   React.useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
+      const orig = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = orig;
+      };
     } else {
       setQuery('');
     }
@@ -149,6 +154,15 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
             <p className="px-3 py-1 text-xs font-semibold text-textMuted uppercase tracking-wider">
               Quick Links
             </p>
+            <div
+              onClick={() => handleNavigate('/library')}
+              className="p-3 rounded-2xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors min-h-[44px]"
+            >
+              <Compass className="w-4 h-4 text-accent" />
+              <span className="text-sm font-semibold text-textPrimary">
+                डिजिटल ग्रन्थागार (Library Hub)
+              </span>
+            </div>
             <div
               onClick={() => handleNavigate('/books/ramayana')}
               className="p-3 rounded-2xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors min-h-[44px]"

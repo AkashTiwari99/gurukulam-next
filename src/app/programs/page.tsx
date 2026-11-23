@@ -24,7 +24,7 @@ const PROGRAMS = [
       'Vedic cosmology, ethics, and contemporary relevance',
     ],
     linkText: 'Explore Vedic Library',
-    linkHref: '/books',
+    linkHref: '/library',
   },
   {
     id: 'sanskrit-immersion',
