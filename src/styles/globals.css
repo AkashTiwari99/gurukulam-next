@@ -183,6 +183,48 @@ button, [role="button"], a, input, select, textarea {
   color: var(--accent-primary);
 }
 
+/* Container Queries & Fluid Auto-Fitting for Sanskrit Shlokas */
+.shloka-container {
+  container-type: inline-size;
+  container-name: shloka;
+  width: 100%;
+}
+
+.shloka-line {
+  display: block;
+  text-align: center;
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  letter-spacing: 0.015em;
+  transition: font-size 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Long Meter Verses (e.g. Sārdūlavikrīḍita, Sragdharā > 70 chars) */
+.shloka-meter-long {
+  font-size: clamp(0.85rem, 2.15cqw + 0.35rem, 1.25rem);
+  line-height: 1.85;
+}
+
+/* Medium Meter Verses (e.g. Vasantatilakā, Triṣṭubh ~ 48-70 chars) */
+.shloka-meter-medium {
+  font-size: clamp(0.95rem, 2.7cqw + 0.35rem, 1.38rem);
+  line-height: 1.95;
+}
+
+/* Standard Meter Verses (Anushṭubh, ~35-45 chars) */
+.shloka-meter-standard {
+  font-size: clamp(1.05rem, 3.2cqw + 0.35rem, 1.55rem);
+  line-height: 2.1;
+}
+
+/* On wide containers, keep hemistich strictly unbroken on a single line */
+@container shloka (min-width: 720px) {
+  .shloka-line {
+    white-space: nowrap;
+  }
+}
+
 /* Smooth keyframes */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.98); }

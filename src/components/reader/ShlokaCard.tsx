@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 import { Copy, Check, ChevronDown, ChevronUp, BookOpen, Bookmark, Share2 } from 'lucide-react';
+import { ShlokaLineRenderer } from './ShlokaLineRenderer';
+import { normalizeShloka } from '@/lib/formatShloka';
 
 export interface Verse {
   id: string;
@@ -41,7 +43,7 @@ export function ShlokaCard({
   }, [forceExpandVyakhya]);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(verse.text);
+    navigator.clipboard.writeText(normalizeShloka(verse.text));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -152,10 +154,15 @@ export function ShlokaCard({
       </div>
 
       {/* Sanskrit Verse Text */}
-      <div
-        className={`font-devanagari font-semibold text-textPrimary text-center whitespace-pre-line break-words py-3 transition-all ${fontSizeClass}`}
-      >
-        {verse.text}
+      <div className="py-2 transition-all">
+        <ShlokaLineRenderer
+          text={verse.text}
+          overrideMeterClass={
+            fontSizeClass && fontSizeClass !== 'text-lg sm:text-xl md:text-2xl leading-loose'
+              ? fontSizeClass
+              : undefined
+          }
+        />
       </div>
 
       {/* Commentary (व्याख्या) Section */}

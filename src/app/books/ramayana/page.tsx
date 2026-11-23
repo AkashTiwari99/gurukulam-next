@@ -3,6 +3,7 @@ import path from 'path';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { Sparkles, ChevronRight } from 'lucide-react';
+import { ShlokaLineRenderer } from '@/components/reader/ShlokaLineRenderer';
 
 interface MangalaData {
   title: string;
@@ -88,9 +89,9 @@ export default function RamayanaGatewayPage() {
                     मङ्गल #{v.number}
                   </span>
                 </div>
-                <p className="font-devanagari text-lg sm:text-xl font-medium leading-loose text-textPrimary text-center whitespace-pre-line">
-                  {v.text}
-                </p>
+                <div className="py-2">
+                  <ShlokaLineRenderer text={v.text} />
+                </div>
               </div>
             ))}
           </div>

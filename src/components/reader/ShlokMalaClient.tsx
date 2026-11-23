@@ -11,6 +11,8 @@ import {
   FastForward,
   RotateCcw,
 } from 'lucide-react';
+import { ShlokaLineRenderer } from './ShlokaLineRenderer';
+import { formatShlokaLines, normalizeShloka } from '@/lib/formatShloka';
 
 interface ShlokItem {
   id: string;
@@ -124,7 +126,7 @@ export function ShlokMalaClient({ data }: { data: MalaData }) {
   };
 
   const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(normalizeShloka(text));
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
   };
@@ -211,8 +213,8 @@ export function ShlokMalaClient({ data }: { data: MalaData }) {
             </div>
 
             {/* Sanskrit Verse */}
-            <div className="font-devanagari text-lg sm:text-xl font-semibold leading-loose text-textPrimary text-center whitespace-pre-line break-words py-3">
-              {shlok.sanskrit}
+            <div className="py-2">
+              <ShlokaLineRenderer text={shlok.sanskrit} />
             </div>
 
             {/* Translations */}
@@ -265,7 +267,7 @@ export function ShlokMalaClient({ data }: { data: MalaData }) {
                   {activeShlok.badge}
                 </p>
                 <p className="text-xs text-textSecondary truncate font-devanagari">
-                  {activeShlok.sanskrit.split('\n')[0]}
+                  {formatShlokaLines(activeShlok.sanskrit)[0] || activeShlok.sanskrit}
                 </p>
               </div>
             </div>

@@ -93,6 +93,52 @@ def clean_html_text(el):
     lines = [line.strip() for line in text.split("\n")]
     return "\n".join([l for l in lines if l])
 
+def normalize_verse_text(raw_text):
+    """Strict Metrical Break Rule: Sanskrit verses break strictly at । and ॥."""
+    if not raw_text:
+        return ""
+    text = raw_text.replace("\r\n", "\n").replace("\r", "\n").strip()
+    text = re.sub(r"॥\s*\n\s*([0-9०-९\.]+)\s*॥?", r"॥ \1 ॥", text)
+    text = re.sub(r"॥\s*\n\s*([0-9०-९\.]+)", r"॥ \1 ॥", text)
+
+    raw_lines = [l.strip() for l in text.split("\n") if l.strip()]
+    if not raw_lines:
+        return ""
+
+    danda_count = text.count("।") + text.count("॥")
+    if len(text) > 400 and danda_count < 6:
+        return "\n".join(raw_lines)
+
+    merged = []
+    current = ""
+    for l in raw_lines:
+        if re.match(r"^([0-9०-९\.]+\s*॥|॥)", l) and current:
+            current += " " + l
+            merged.append(current.strip())
+            current = ""
+            continue
+        if current:
+            current += " " + l
+        else:
+            current = l
+        is_break = bool(
+            re.search(r"।$", current.strip()) or
+            re.search(r"॥(\s*[0-9०-९\.]+\s*॥?)?$", current.strip())
+        )
+        if is_break:
+            merged.append(current.strip())
+            current = ""
+    if current:
+        merged.append(current.strip())
+
+    cleaned = []
+    for line in merged:
+        c = re.sub(r"\s+", " ", line).strip()
+        c = re.sub(r"([^\s।॥])\s*।", r"\1 ।", c)
+        c = re.sub(r"([^\s।॥])\s*॥", r"\1 ॥", c)
+        cleaned.append(c)
+    return "\n".join(cleaned)
+
 def extract_sarga(file_path, kanda_info, sarga_num):
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
@@ -114,9 +160,9 @@ def extract_sarga(file_path, kanda_info, sarga_num):
         text = ""
         if v_text_el:
             uvacha = v_text_el.get("uvacha", "").strip()
-            text = clean_html_text(v_text_el)
+            text = normalize_verse_text(clean_html_text(v_text_el))
         else:
-            text = clean_html_text(v_div)
+            text = normalize_verse_text(clean_html_text(v_div))
             
         # Vyakhya (Commentary)
         vyakhya_el = v_div.find("div", class_="vyakhya")
@@ -163,7 +209,7 @@ def extract_mangala_shloka():
     verses = []
     for idx, v_div in enumerate(verse_divs, start=1):
         v_id = v_div.get("id", f"RAM_MANGALA_{idx}").strip()
-        text = clean_html_text(v_div)
+        text = normalize_verse_text(clean_html_text(v_div))
         verses.append({
             "id": v_id,
             "number": idx,
@@ -206,7 +252,7 @@ def extract_shlok_mala():
             
             # Verse
             verse_el = art.find(class_="sanskrit-verse")
-            verse_text = clean_html_text(verse_el)
+            verse_text = normalize_verse_text(clean_html_text(verse_el))
             
             # Hindi
             hindi_box = art.find(class_="hindi-box")
