@@ -1,9 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { KandaNavigation } from '@/components/reader/KandaNavigation';
-import { ShlokaCard, Verse } from '@/components/reader/ShlokaCard';
+import { SargaReaderClient } from '@/components/reader/SargaReaderClient';
+import { Verse } from '@/components/reader/ShlokaCard';
 
 interface SargaData {
   kanda: string;
@@ -96,55 +98,43 @@ export default function SargaPage({ params }: PageProps) {
         totalSargas={totalSargas}
       />
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-8 pb-12">
-        {/* Sarga Header Title */}
-        <div className="text-center mb-10 space-y-3">
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent uppercase tracking-wider">
-            {data.kandaTitle}
-          </span>
-          <h1 className="font-devanagari text-2xl sm:text-3xl md:text-4xl font-bold text-textPrimary">
-            {data.sargaTitle}
-          </h1>
-          <p className="text-sm text-textMuted">
-            कुल श्लोक संख्या: <span className="font-semibold text-textPrimary">{data.totalVerses}</span>
-          </p>
-        </div>
-
-        {/* Verses List */}
-        <div className="space-y-6">
-          {data.verses.map((verse, idx) => (
-            <ShlokaCard key={verse.id || idx} verse={verse} index={idx} />
-          ))}
-        </div>
+      {/* Main Content with Interactive Reader Features */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-12">
+        <SargaReaderClient
+          verses={data.verses}
+          kandaTitle={data.kandaTitle}
+          sargaTitle={data.sargaTitle}
+          sargaNum={data.sarga}
+          totalVerses={data.totalVerses}
+        />
 
         {/* Bottom Sarga Jump Links */}
         <div className="mt-16 pt-8 border-t border-border-subtle flex items-center justify-between">
           {data.sarga > 1 ? (
-            <a
+            <Link
               href={`/books/ramayana/${params.kanda}/sarga-${data.sarga - 1}`}
-              className="px-5 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-sm font-medium text-textPrimary hover:text-accent transition-colors shadow-subtle"
+              className="px-5 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-sm font-medium text-textPrimary hover:text-accent transition-colors shadow-subtle min-h-[44px] flex items-center"
             >
               ← पूर्व सर्ग ({data.sarga - 1})
-            </a>
+            </Link>
           ) : (
-            <a
+            <Link
               href="/books/ramayana"
-              className="px-5 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-sm font-medium text-textPrimary hover:text-accent transition-colors shadow-subtle"
+              className="px-5 py-2.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-sm font-medium text-textPrimary hover:text-accent transition-colors shadow-subtle min-h-[44px] flex items-center"
             >
               ← मङ्गल श्लोक
-            </a>
+            </Link>
           )}
 
           {data.sarga < totalSargas ? (
-            <a
+            <Link
               href={`/books/ramayana/${params.kanda}/sarga-${data.sarga + 1}`}
-              className="px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-colors shadow-subtle"
+              className="px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-sm font-semibold transition-colors shadow-subtle min-h-[44px] flex items-center"
             >
               अग्रिम सर्ग ({data.sarga + 1}) →
-            </a>
+            </Link>
           ) : (
-            <span className="text-xs text-textMuted">काण्ड समाप्त</span>
+            <span className="text-xs text-textMuted font-medium">काण्ड समाप्त</span>
           )}
         </div>
       </div>

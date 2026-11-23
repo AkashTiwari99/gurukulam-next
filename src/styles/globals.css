@@ -15,7 +15,7 @@
   --bg-canvas: #FAF9F6;
   --bg-surface: #FFFFFF;
   --bg-subtle: #F2EFE9;
-  --bg-glass: rgba(250, 249, 246, 0.82);
+  --bg-glass: rgba(250, 249, 246, 0.85);
 
   /* Typography — Warm Obsidian */
   --text-primary: #1C1B19;
@@ -39,6 +39,8 @@
   --status-warning: #9A6318;
   --status-danger: #B43B32;
   --status-info: #2F5D8A;
+
+  --target-size: 36px;
 }
 
 [data-theme="dark"] {
@@ -46,7 +48,7 @@
   --bg-canvas: #111110;
   --bg-surface: #1A1918;
   --bg-subtle: #242220;
-  --bg-glass: rgba(17, 17, 16, 0.82);
+  --bg-glass: rgba(17, 17, 16, 0.85);
 
   /* Typography — Soft Starlight Ivory */
   --text-primary: #F3EFEA;
@@ -70,10 +72,20 @@
   --status-warning: #E3A952;
   --status-danger: #E87A72;
   --status-info: #7BAAD6;
+
+  --target-size: 36px;
+}
+
+@media (pointer: coarse) {
+  :root, [data-theme="dark"], [data-theme="light"] {
+    --target-size: 44px;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(5rem + env(safe-area-inset-top, 0px));
+  scroll-padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
   font-family: var(--font-sans, "Poppins", -apple-system, sans-serif);
   background-color: var(--bg-canvas);
   color: var(--text-primary);
@@ -82,9 +94,24 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+/* Modern Typography Wrapping */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p, li {
+  text-wrap: pretty;
+}
+
+/* Prevent double-tap zoom delay on interactive touch elements */
+button, [role="button"], a, input, select, textarea {
+  touch-action: manipulation;
 }
 
 /* Custom Scrollbar */
@@ -116,4 +143,24 @@ body {
 ::selection {
   background-color: var(--accent-soft);
   color: var(--accent-primary);
+}
+
+/* Smooth keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

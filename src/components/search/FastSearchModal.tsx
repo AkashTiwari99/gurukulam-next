@@ -37,7 +37,6 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         if (isOpen) onClose();
-        else onClose(); // parent handles toggle
       }
       if (e.key === 'Escape' && isOpen) {
         onClose();
@@ -65,10 +64,16 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
-      <div className="w-full max-w-lg bg-surface border border-border-strong rounded-2xl shadow-elevated overflow-hidden">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/60 backdrop-blur-sm animate-fadeIn"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-lg bg-surface border border-border-strong rounded-3xl shadow-elevated overflow-hidden"
+      >
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3 border-b border-border-subtle bg-subtle/50">
+        <div className="flex items-center px-4 py-3.5 border-b border-border-subtle bg-subtle/50">
           <Search className="w-5 h-5 text-textMuted mr-3 flex-shrink-0" />
           <input
             ref={inputRef}
@@ -80,7 +85,7 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
           />
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-textMuted hover:text-textPrimary hover:bg-surface transition-colors"
+            className="p-1.5 rounded-xl text-textMuted hover:text-textPrimary hover:bg-surface transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
             aria-label="Close search"
           >
             <X className="w-5 h-5" />
@@ -98,7 +103,7 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
                 const kanda = KANDAS_INDEX[kandaNum - 1] || KANDAS_INDEX[0];
                 handleNavigate(`/books/ramayana/${kanda.slug}/sarga-${sargaNum}`);
               }}
-              className="p-3 rounded-xl hover:bg-accent-soft cursor-pointer flex items-center justify-between group transition-colors"
+              className="p-3 rounded-2xl hover:bg-accent-soft cursor-pointer flex items-center justify-between group transition-colors min-h-[44px]"
             >
               <div className="flex items-center space-x-3">
                 <BookOpen className="w-4 h-4 text-accent" />
@@ -124,7 +129,7 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
               <div
                 key={kanda.slug}
                 onClick={() => handleNavigate(`/books/ramayana/${kanda.slug}/sarga-1`)}
-                className="p-3 rounded-xl hover:bg-subtle cursor-pointer flex items-center justify-between group transition-colors"
+                className="p-3 rounded-2xl hover:bg-subtle cursor-pointer flex items-center justify-between group transition-colors min-h-[44px]"
               >
                 <div className="flex items-center space-x-3">
                   <BookOpen className="w-4 h-4 text-accent" />
@@ -146,7 +151,7 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
             </p>
             <div
               onClick={() => handleNavigate('/books/ramayana')}
-              className="p-3 rounded-xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors"
+              className="p-3 rounded-2xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors min-h-[44px]"
             >
               <Compass className="w-4 h-4 text-textMuted" />
               <span className="text-sm text-textPrimary">
@@ -155,14 +160,14 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
             </div>
             <div
               onClick={() => handleNavigate('/books/shlok-mala/1')}
-              className="p-3 rounded-xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors"
+              className="p-3 rounded-2xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors min-h-[44px]"
             >
               <Compass className="w-4 h-4 text-textMuted" />
               <span className="text-sm text-textPrimary">श्लोक माला (Shlok Mala)</span>
             </div>
             <div
               onClick={() => handleNavigate('/keyboard')}
-              className="p-3 rounded-xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors"
+              className="p-3 rounded-2xl hover:bg-subtle cursor-pointer flex items-center space-x-3 transition-colors min-h-[44px]"
             >
               <Compass className="w-4 h-4 text-textMuted" />
               <span className="text-sm text-textPrimary">
@@ -173,8 +178,8 @@ export function FastSearchModal({ isOpen, onClose }: FastSearchModalProps) {
         </div>
 
         {/* Footer info */}
-        <div className="px-4 py-2 border-t border-border-subtle bg-subtle/30 flex justify-between items-center text-xs text-textMuted">
-          <span>Navigate with mouse or keyboard</span>
+        <div className="px-4 py-2.5 border-t border-border-subtle bg-subtle/30 flex justify-between items-center text-xs text-textMuted">
+          <span>Navigate with mouse or tap</span>
           <kbd className="px-1.5 py-0.5 rounded bg-surface border border-border-subtle font-mono text-[10px]">
             ESC to close
           </kbd>

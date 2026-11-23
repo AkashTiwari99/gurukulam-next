@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import Link from 'next/link';
 import { Metadata } from 'next';
-import { BookOpen, Sparkles, ChevronRight } from 'lucide-react';
+import { Sparkles, ChevronRight } from 'lucide-react';
 
 interface MangalaData {
   title: string;
@@ -50,16 +51,16 @@ export default function RamayanaGatewayPage() {
       <div className="max-w-4xl mx-auto space-y-16">
         {/* Header Hero */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-semibold">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>श्रीमद्वाल्मीकिरामायणम्</span>
+            <span>श्रीमद्वाल्मीकिरामायणम् • Adikavya</span>
           </div>
 
           <h1 className="font-devanagari text-3xl sm:text-4xl md:text-5xl font-bold text-textPrimary leading-tight">
             {mangala.header}
           </h1>
 
-          <p className="text-sm sm:text-base text-textSecondary max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-textSecondary max-w-2xl mx-auto leading-relaxed">
             आदिकाव्य वाल्मीकि रामायण के सातों काण्डों का प्रामाणिक अध्ययन करने से पूर्व परम्परागत मङ्गल श्लोक।
           </p>
         </div>
@@ -80,7 +81,7 @@ export default function RamayanaGatewayPage() {
               <div
                 key={v.id}
                 id={v.id}
-                className="p-6 sm:p-7 rounded-2xl bg-surface border border-border-subtle hover:border-accent/30 shadow-subtle transition-all duration-200"
+                className="p-6 sm:p-8 rounded-3xl bg-surface border border-border-subtle hover:border-accent/40 shadow-subtle transition-all duration-200"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-accent-soft text-accent">
@@ -108,14 +109,14 @@ export default function RamayanaGatewayPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {kandas.map((k) => (
-              <a
+              <Link
                 key={k.slug}
                 href={`/books/ramayana/${k.slug}/sarga-1`}
-                className="p-5 rounded-2xl bg-surface border border-border-subtle hover:border-accent shadow-subtle hover:shadow-elevated transition-all duration-200 group flex flex-col justify-between"
+                className="p-6 rounded-3xl bg-surface border border-border-subtle hover:border-accent shadow-subtle hover:shadow-elevated transition-all duration-200 group flex flex-col justify-between min-h-[140px]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-devanagari text-lg font-bold text-textPrimary group-hover:text-accent transition-colors">
+                    <span className="font-devanagari text-xl font-bold text-textPrimary group-hover:text-accent transition-colors">
                       {k.nameDevanagari}
                     </span>
                     <span className="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-subtle text-textSecondary font-mono">
@@ -127,11 +128,11 @@ export default function RamayanaGatewayPage() {
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-border-subtle flex items-center justify-between text-xs font-medium text-accent">
+                <div className="mt-4 pt-3 border-t border-border-subtle flex items-center justify-between text-xs font-semibold text-accent">
                   <span>सर्ग १ से पढ़ना आरम्भ करें</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </section>

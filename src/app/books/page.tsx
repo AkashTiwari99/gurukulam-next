@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { BookOpen, FileText, Download, Sparkles, ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -79,13 +80,13 @@ export default function BooksPage() {
               </div>
 
               <div className="mt-8 pt-4 border-t border-border-subtle flex items-center justify-between">
-                <a
+                <Link
                   href="/books/ramayana"
-                  className="px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs font-semibold transition-colors flex items-center space-x-1"
+                  className="px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs font-semibold transition-colors flex items-center space-x-1 min-h-[44px]"
                 >
                   <span>रामायण प्रवेश</span>
                   <ChevronRight className="w-4 h-4" />
-                </a>
+                </Link>
                 <span className="text-xs text-textMuted font-mono">६४५ सर्ग उपलब्ध</span>
               </div>
             </div>
@@ -106,18 +107,18 @@ export default function BooksPage() {
 
               <div className="mt-8 pt-4 border-t border-border-subtle flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <a
+                  <Link
                     href="/books/shlok-mala/1"
-                    className="px-4 py-2 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs font-semibold transition-colors"
+                    className="px-4 py-2 rounded-full bg-accent hover:bg-accent-hover text-on-accent text-xs font-semibold transition-colors min-h-[44px] flex items-center"
                   >
                     माला १
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/books/shlok-mala/2"
-                    className="px-4 py-2 rounded-full border border-border-subtle bg-subtle hover:bg-surface text-textPrimary text-xs font-semibold transition-colors"
+                    className="px-4 py-2 rounded-full border border-border-subtle bg-subtle hover:bg-surface text-textPrimary text-xs font-semibold transition-colors min-h-[44px] flex items-center"
                   >
                     माला २
-                  </a>
+                  </Link>
                 </div>
                 <span className="text-xs text-textMuted font-mono">३४९ श्लोक ऑडियो</span>
               </div>
@@ -157,7 +158,7 @@ export default function BooksPage() {
                     href={b.file}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-accent hover:text-accent-hover flex items-center space-x-1"
+                    className="text-xs font-semibold text-accent hover:text-accent-hover flex items-center space-x-1 min-h-[36px]"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download PDF</span>

@@ -146,7 +146,7 @@ export function VedicKeyboard() {
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Typing & Preview Area */}
-      <div className="bg-surface border border-border-subtle rounded-3xl p-6 shadow-subtle space-y-4">
+      <div className="bg-surface border border-border-subtle rounded-3xl p-5 sm:p-6 shadow-subtle space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
           <span className="text-xs font-semibold text-textMuted uppercase tracking-wider">
             Vedic Sanskrit Typing Canvas
@@ -154,15 +154,17 @@ export function VedicKeyboard() {
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setText('')}
-              className="p-2 rounded-xl text-textMuted hover:text-status-danger hover:bg-subtle transition-colors text-xs flex items-center space-x-1"
+              className="p-2 rounded-xl text-textMuted hover:text-status-danger hover:bg-subtle transition-colors text-xs flex items-center space-x-1 min-h-[36px]"
               title="Clear text"
+              aria-label="Clear all typed text"
             >
               <Trash2 className="w-4 h-4" />
               <span className="hidden sm:inline">Clear</span>
             </button>
             <button
               onClick={handleCopy}
-              className="px-3 py-1.5 rounded-full bg-accent text-on-accent text-xs font-semibold hover:bg-accent-hover transition-colors flex items-center space-x-1.5 shadow-subtle"
+              className="px-3.5 py-1.5 rounded-full bg-accent text-on-accent text-xs font-semibold hover:bg-accent-hover transition-colors flex items-center space-x-1.5 shadow-subtle min-h-[36px]"
+              aria-label="Copy typed text"
             >
               {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? 'Copied!' : 'Copy Text'}</span>
@@ -175,17 +177,17 @@ export function VedicKeyboard() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="यहाँ वैदिक संस्कृत टाइप करें (Type Vedic Sanskrit here)..."
-          className="w-full h-36 bg-transparent text-textPrimary placeholder-textMuted font-devanagari text-xl sm:text-2xl leading-relaxed resize-y focus:outline-none"
+          className="w-full h-32 sm:h-36 bg-transparent text-textPrimary placeholder-textMuted font-devanagari text-xl sm:text-2xl leading-relaxed resize-y focus:outline-none"
         />
       </div>
 
       {/* Virtual Keyboard Shell */}
-      <div className="bg-surface border border-border-strong rounded-3xl p-4 sm:p-6 shadow-elevated space-y-4">
+      <div className="bg-surface border border-border-strong rounded-3xl p-3 sm:p-6 shadow-elevated space-y-3 sm:space-y-4">
         {/* Category Tabs */}
         <div className="flex flex-wrap items-center gap-1.5 pb-3 border-b border-border-subtle">
           <button
             onClick={() => setActiveTab('vowels')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[36px] ${
               activeTab === 'vowels'
                 ? 'bg-accent text-on-accent'
                 : 'bg-subtle text-textSecondary hover:text-textPrimary'
@@ -195,37 +197,37 @@ export function VedicKeyboard() {
           </button>
           <button
             onClick={() => setActiveTab('consonants')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[36px] ${
               activeTab === 'consonants'
                 ? 'bg-accent text-on-accent'
                 : 'bg-subtle text-textSecondary hover:text-textPrimary'
             }`}
           >
-            व्यञ्जन (Consonants)
+            व्यञ्जन
           </button>
           <button
             onClick={() => setActiveTab('vedic')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[36px] ${
               activeTab === 'vedic'
                 ? 'bg-accent text-on-accent'
                 : 'bg-subtle text-textSecondary hover:text-textPrimary'
             }`}
           >
-            वैदिक स्वर (Diacritics)
+            वैदिक स्वर
           </button>
           <button
             onClick={() => setActiveTab('sama')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[36px] ${
               activeTab === 'sama'
                 ? 'bg-accent text-on-accent'
                 : 'bg-subtle text-textSecondary hover:text-textPrimary'
             }`}
           >
-            सामवेद (Samavedic)
+            सामवेद
           </button>
           <button
             onClick={() => setActiveTab('specials')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[36px] ${
               activeTab === 'specials'
                 ? 'bg-accent text-on-accent'
                 : 'bg-subtle text-textSecondary hover:text-textPrimary'
@@ -235,25 +237,25 @@ export function VedicKeyboard() {
           </button>
           <button
             onClick={() => setActiveTab('numbers')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all min-h-[36px] ${
               activeTab === 'numbers'
                 ? 'bg-accent text-on-accent'
                 : 'bg-subtle text-textSecondary hover:text-textPrimary'
             }`}
           >
-            अङ्क (Numbers)
+            अङ्क
           </button>
 
           {activeTab === 'vowels' && (
             <button
               onClick={() => setMatraMode(!matraMode)}
-              className={`ml-auto px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+              className={`ml-auto px-3 py-1 rounded-full text-xs font-medium border transition-colors min-h-[34px] ${
                 matraMode
                   ? 'border-accent bg-accent-soft text-accent'
                   : 'border-border-subtle text-textMuted hover:text-textPrimary'
               }`}
             >
-              {matraMode ? 'Mode: मात्रा (Signs)' : 'Mode: मूल स्वर (Full)'}
+              {matraMode ? 'Mode: मात्रा' : 'Mode: मूल स्वर'}
             </button>
           )}
         </div>
@@ -261,19 +263,19 @@ export function VedicKeyboard() {
         {/* Keys Grid */}
         <div className="min-h-[180px]">
           {activeTab === 'vowels' && (
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-1.5 sm:gap-2">
               {VOWELS.map((v, i) => {
                 const charToInsert = matraMode && v.matra !== null ? v.matra : v.dev;
                 return (
                   <button
                     key={i}
                     onClick={() => insertChar(charToInsert)}
-                    className="h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent flex flex-col items-center justify-center transition-all group"
+                    className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                   >
-                    <span className="font-devanagari text-xl font-bold text-textPrimary group-hover:text-accent">
+                    <span className="font-devanagari text-lg sm:text-xl font-bold text-textPrimary group-hover:text-accent">
                       {charToInsert || '—'}
                     </span>
-                    <span className="text-[10px] text-textMuted">{v.roman}</span>
+                    <span className="text-[9px] text-textMuted">{v.roman}</span>
                   </button>
                 );
               })}
@@ -281,34 +283,34 @@ export function VedicKeyboard() {
           )}
 
           {activeTab === 'consonants' && (
-            <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-9 gap-2">
+            <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-9 gap-1.5 sm:gap-2">
               {CONSONANTS.map((c, i) => (
                 <button
                   key={i}
                   onClick={() => insertChar(c.dev)}
-                  className="h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent flex flex-col items-center justify-center transition-all group"
+                  className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-xl font-bold text-textPrimary group-hover:text-accent">
+                  <span className="font-devanagari text-lg sm:text-xl font-bold text-textPrimary group-hover:text-accent">
                     {c.dev}
                   </span>
-                  <span className="text-[10px] text-textMuted">{c.roman}</span>
+                  <span className="text-[9px] text-textMuted">{c.roman}</span>
                 </button>
               ))}
             </div>
           )}
 
           {activeTab === 'vedic' && (
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-1.5 sm:gap-2">
               {VEDIC_MARKS.map((m, i) => (
                 <button
                   key={i}
                   onClick={() => insertChar(m.char)}
-                  className="h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent flex flex-col items-center justify-center transition-all group"
+                  className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-2xl font-bold text-accent">
+                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent">
                     {`◌${m.char}`}
                   </span>
-                  <span className="text-[9px] text-textMuted truncate max-w-[60px]">
+                  <span className="text-[9px] text-textMuted truncate max-w-[55px]">
                     {m.roman}
                   </span>
                 </button>
@@ -317,17 +319,17 @@ export function VedicKeyboard() {
           )}
 
           {activeTab === 'sama' && (
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-1.5 sm:gap-2">
               {SAMA_SVARA.map((s, i) => (
                 <button
                   key={i}
                   onClick={() => insertChar(s.char)}
-                  className="h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent flex flex-col items-center justify-center transition-all group"
+                  className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-2xl font-bold text-accent">
+                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-accent">
                     {`◌${s.char}`}
                   </span>
-                  <span className="text-[9px] text-textMuted truncate max-w-[60px]">
+                  <span className="text-[9px] text-textMuted truncate max-w-[55px]">
                     {s.roman}
                   </span>
                 </button>
@@ -336,34 +338,34 @@ export function VedicKeyboard() {
           )}
 
           {activeTab === 'specials' && (
-            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
               {SPECIALS.map((s, i) => (
                 <button
                   key={i}
                   onClick={() => insertChar(s.char)}
-                  className="h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent flex flex-col items-center justify-center transition-all group"
+                  className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-2xl font-bold text-textPrimary group-hover:text-accent">
+                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-textPrimary group-hover:text-accent">
                     {s.char}
                   </span>
-                  <span className="text-[10px] text-textMuted">{s.roman}</span>
+                  <span className="text-[9px] text-textMuted">{s.roman}</span>
                 </button>
               ))}
             </div>
           )}
 
           {activeTab === 'numbers' && (
-            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
+            <div className="grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2">
               {NUMBERS.map((n, i) => (
                 <button
                   key={i}
                   onClick={() => insertChar(n.dev)}
-                  className="h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent flex flex-col items-center justify-center transition-all group"
+                  className="h-12 sm:h-14 rounded-2xl border border-border-subtle bg-subtle/50 hover:bg-accent-soft hover:border-accent active:scale-95 flex flex-col items-center justify-center transition-all group min-h-[44px]"
                 >
-                  <span className="font-devanagari text-2xl font-bold text-textPrimary group-hover:text-accent">
+                  <span className="font-devanagari text-xl sm:text-2xl font-bold text-textPrimary group-hover:text-accent">
                     {n.dev}
                   </span>
-                  <span className="text-[10px] text-textMuted">{n.roman}</span>
+                  <span className="text-[9px] text-textMuted">{n.roman}</span>
                 </button>
               ))}
             </div>
@@ -374,21 +376,24 @@ export function VedicKeyboard() {
         <div className="pt-3 border-t border-border-subtle grid grid-cols-3 gap-2">
           <button
             onClick={() => insertChar(' ')}
-            className="h-12 rounded-2xl border border-border-subtle bg-subtle hover:bg-surface text-textSecondary hover:text-textPrimary text-xs font-semibold flex items-center justify-center space-x-1 transition-colors"
+            className="h-12 rounded-2xl border border-border-subtle bg-subtle hover:bg-surface text-textSecondary hover:text-textPrimary text-xs font-semibold flex items-center justify-center space-x-1 transition-colors min-h-[44px] active:scale-95"
+            aria-label="Insert Space"
           >
             <Space className="w-4 h-4" />
             <span>Space</span>
           </button>
           <button
             onClick={handleBackspace}
-            className="h-12 rounded-2xl border border-border-subtle bg-subtle hover:bg-surface text-textSecondary hover:text-textPrimary text-xs font-semibold flex items-center justify-center space-x-1 transition-colors"
+            className="h-12 rounded-2xl border border-border-subtle bg-subtle hover:bg-surface text-textSecondary hover:text-textPrimary text-xs font-semibold flex items-center justify-center space-x-1 transition-colors min-h-[44px] active:scale-95"
+            aria-label="Backspace"
           >
             <Delete className="w-4 h-4" />
             <span>Backspace</span>
           </button>
           <button
             onClick={() => insertChar('\n')}
-            className="h-12 rounded-2xl border border-border-subtle bg-subtle hover:bg-surface text-textSecondary hover:text-textPrimary text-xs font-semibold flex items-center justify-center space-x-1 transition-colors"
+            className="h-12 rounded-2xl border border-border-subtle bg-subtle hover:bg-surface text-textSecondary hover:text-textPrimary text-xs font-semibold flex items-center justify-center space-x-1 transition-colors min-h-[44px] active:scale-95"
+            aria-label="New Line"
           >
             <CornerDownLeft className="w-4 h-4" />
             <span>Enter</span>

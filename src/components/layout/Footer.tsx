@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -25,24 +26,24 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/books/ramayana" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/books/ramayana" className="text-textSecondary hover:text-accent transition-colors">
                   श्री वाल्मीकि रामायण
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/books/shlok-mala/1" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/books/shlok-mala/1" className="text-textSecondary hover:text-accent transition-colors">
                   श्लोक माला (Shlok Mala)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/keyboard" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/keyboard" className="text-textSecondary hover:text-accent transition-colors">
                   Vedic Virtual Keyboard
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/books" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/books" className="text-textSecondary hover:text-accent transition-colors">
                   Library & PDFs
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -54,24 +55,24 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/about" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/about" className="text-textSecondary hover:text-accent transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/campus" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/campus" className="text-textSecondary hover:text-accent transition-colors">
                   Campus & Life
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/programs" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/programs" className="text-textSecondary hover:text-accent transition-colors">
                   Vedic Programs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/contact" className="text-textSecondary hover:text-accent transition-colors">
                   Contact & Support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

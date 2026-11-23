@@ -1,11 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/navigation';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '../theme/ThemeToggle';
 import { FastSearchModal } from '../search/FastSearchModal';
-import { Search, Menu, X, BookOpen, Keyboard, Sparkles } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -29,12 +29,23 @@ export function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  // Close on Escape
+  React.useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [mobileMenuOpen]);
+
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-border-subtle bg-canvas/80 backdrop-blur-md transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo & Brand */}
-          <a href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group min-h-[44px]">
             <div className="w-10 h-10 rounded-full bg-accent text-on-accent flex items-center justify-center font-bold text-sm shadow-subtle group-hover:scale-105 transition-transform duration-200">
               GURU
             </div>
@@ -46,14 +57,14 @@ export function Navbar() {
                 Reviving Ancient Wisdom
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1" aria-label="Desktop navigation">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
@@ -63,7 +74,7 @@ export function Navbar() {
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -74,7 +85,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="flex items-center space-x-2 px-3 py-1.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textMuted hover:text-textPrimary text-xs transition-colors shadow-subtle"
+              className="flex items-center space-x-2 px-3 py-1.5 rounded-full border border-border-subtle bg-surface hover:bg-subtle text-textMuted hover:text-textPrimary text-xs transition-colors shadow-subtle min-h-[36px]"
               aria-label="Open search"
             >
               <Search className="w-3.5 h-3.5" />
@@ -91,8 +102,9 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-textSecondary hover:text-textPrimary hover:bg-subtle focus:outline-none"
+              className="lg:hidden p-2 rounded-xl text-textSecondary hover:text-textPrimary hover:bg-subtle focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle mobile menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -101,21 +113,21 @@ export function Navbar() {
 
         {/* Mobile Slide-Down Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-b border-border-subtle bg-surface/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 animate-fadeIn">
+          <div className="lg:hidden border-b border-border-subtle bg-surface/98 backdrop-blur-lg px-4 pt-3 pb-6 space-y-1 animate-fadeIn shadow-elevated">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-colors ${
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors min-h-[44px] flex items-center ${
                     isActive
                       ? 'bg-accent-soft text-accent font-semibold'
                       : 'text-textPrimary hover:bg-subtle'
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               );
             })}
           </div>

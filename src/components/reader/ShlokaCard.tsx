@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Copy, Check, ChevronDown, ChevronUp, BookOpen, Volume2 } from 'lucide-react';
+import { Copy, Check, ChevronDown, ChevronUp, BookOpen, Bookmark, Share2 } from 'lucide-react';
 
 export interface Verse {
   id: string;
@@ -18,14 +18,48 @@ export interface Verse {
 interface ShlokaCardProps {
   verse: Verse;
   index: number;
+  fontSizeClass?: string;
+  forceExpandVyakhya?: boolean;
+  isBookmarked?: boolean;
+  onToggleBookmark?: () => void;
 }
 
-export function ShlokaCard({ verse, index }: ShlokaCardProps) {
-  const [showVyakhya, setShowVyakhya] = React.useState(false);
+export function ShlokaCard({
+  verse,
+  index,
+  fontSizeClass = 'text-lg sm:text-xl md:text-2xl leading-loose',
+  forceExpandVyakhya = false,
+  isBookmarked = false,
+  onToggleBookmark,
+}: ShlokaCardProps) {
+  const [showVyakhya, setShowVyakhya] = React.useState(forceExpandVyakhya);
   const [copied, setCopied] = React.useState(false);
+
+  // Sync when parent changes forceExpandVyakhya
+  React.useEffect(() => {
+    setShowVyakhya(forceExpandVyakhya);
+  }, [forceExpandVyakhya]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(verse.text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShare = async () => {
+    const url = typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}#${verse.id}` : '';
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: `वाल्मीकि रामायण श्लोक ${verse.number || index + 1}`,
+          text: verse.text,
+          url,
+        });
+        return;
+      } catch (_) {}
+    }
+    // Fallback: Copy URL with hash
+    navigator.clipboard.writeText(url || verse.text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -47,33 +81,64 @@ export function ShlokaCard({ verse, index }: ShlokaCardProps) {
   return (
     <article
       id={verse.id}
-      className="p-6 sm:p-8 rounded-2xl bg-surface border border-border-subtle hover:border-border-strong shadow-subtle transition-all duration-200 scroll-mt-24"
+      className={`p-6 sm:p-8 rounded-3xl bg-surface border shadow-subtle transition-all duration-200 scroll-mt-24 ${
+        isBookmarked ? 'border-accent bg-accent-soft/20' : 'border-border-subtle hover:border-border-strong'
+      }`}
     >
       {/* Header with Badges & Actions */}
       <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-border-subtle">
         <div className="flex items-center space-x-2">
           {verse.number ? (
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent border border-accent/20">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent border border-accent/20">
               श्लोक {verse.number}
             </span>
           ) : (
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-subtle text-textSecondary">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-subtle text-textSecondary">
               #{index + 1}
             </span>
           )}
 
           {verse.uvacha && (
-            <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-subtle text-textSecondary font-devanagari">
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-subtle text-textSecondary font-devanagari">
               {getUvachaDisplay(verse.uvacha)}
             </span>
           )}
         </div>
 
         <div className="flex items-center space-x-1">
+          {/* Bookmark Button */}
+          {onToggleBookmark && (
+            <button
+              type="button"
+              onClick={onToggleBookmark}
+              className={`p-2 rounded-xl transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center ${
+                isBookmarked
+                  ? 'text-accent bg-accent-soft'
+                  : 'text-textMuted hover:text-accent hover:bg-subtle'
+              }`}
+              title={isBookmarked ? 'बुकमार्क हटाया' : 'बुकमार्क करें'}
+              aria-label="Bookmark shloka"
+            >
+              <Bookmark className="w-4 h-4 fill-current" />
+            </button>
+          )}
+
+          {/* Share Button */}
+          <button
+            type="button"
+            onClick={handleShare}
+            className="p-2 rounded-xl text-textMuted hover:text-accent hover:bg-subtle transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
+            title="श्लोक शेयर करें"
+            aria-label="Share shloka"
+          >
+            <Share2 className="w-4 h-4" />
+          </button>
+
+          {/* Copy Verse Button */}
           <button
             type="button"
             onClick={handleCopy}
-            className="p-2 rounded-xl text-textMuted hover:text-accent hover:bg-subtle transition-colors"
+            className="p-2 rounded-xl text-textMuted hover:text-accent hover:bg-subtle transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
             title="Copy Sanskrit Verse"
             aria-label="Copy Sanskrit verse"
           >
@@ -87,7 +152,9 @@ export function ShlokaCard({ verse, index }: ShlokaCardProps) {
       </div>
 
       {/* Sanskrit Verse Text */}
-      <div className="font-devanagari text-lg sm:text-xl md:text-2xl font-semibold leading-loose text-textPrimary text-center whitespace-pre-line py-2">
+      <div
+        className={`font-devanagari font-semibold text-textPrimary text-center whitespace-pre-line py-3 transition-all ${fontSizeClass}`}
+      >
         {verse.text}
       </div>
 
@@ -97,21 +164,21 @@ export function ShlokaCard({ verse, index }: ShlokaCardProps) {
           <button
             type="button"
             onClick={() => setShowVyakhya(!showVyakhya)}
-            className="flex items-center justify-between w-full text-left py-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors"
+            className="flex items-center justify-between w-full text-left py-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors min-h-[44px]"
           >
             <span className="flex items-center space-x-2">
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-4 h-4 flex-shrink-0" />
               <span>संस्कृत व्याख्या (Commentary)</span>
             </span>
             {showVyakhya ? (
-              <ChevronUp className="w-4 h-4" />
+              <ChevronUp className="w-4 h-4 flex-shrink-0" />
             ) : (
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="w-4 h-4 flex-shrink-0" />
             )}
           </button>
 
           {showVyakhya && (
-            <div className="mt-3 p-4 sm:p-5 rounded-xl bg-subtle/60 border border-border-subtle font-devanagari text-sm sm:text-base leading-relaxed text-textSecondary animate-fadeIn">
+            <div className="mt-3 p-4 sm:p-5 rounded-2xl bg-subtle/60 border border-border-subtle font-devanagari text-sm sm:text-base leading-relaxed text-textSecondary animate-fadeIn">
               <p className="whitespace-pre-line">{verse.vyakhya.text}</p>
             </div>
           )}
