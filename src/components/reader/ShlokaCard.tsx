@@ -153,7 +153,7 @@ export function ShlokaCard({
 
       {/* Sanskrit Verse Text */}
       <div
-        className={`font-devanagari font-semibold text-textPrimary text-center whitespace-pre-line py-3 transition-all ${fontSizeClass}`}
+        className={`font-devanagari font-semibold text-textPrimary text-center whitespace-pre-line break-words py-3 transition-all ${fontSizeClass}`}
       >
         {verse.text}
       </div>

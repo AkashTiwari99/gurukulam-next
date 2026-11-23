@@ -26,7 +26,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        {/* Anti-FOUC Pre-hydration Theme Script */}
+        {/* Anti-FOUC Pre-hydration Theme & Font Size Script */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -40,6 +40,15 @@ export default function RootLayout({
                   el.setAttribute('data-theme', t);
                   el.setAttribute('data-theme-mode', m);
                   el.style.colorScheme = t;
+
+                  var savedScale = localStorage.getItem('gurukulam_font_scale');
+                  if (savedScale) {
+                    var parsed = parseInt(savedScale, 10);
+                    if (!isNaN(parsed) && parsed >= 80 && parsed <= 160) {
+                      el.style.fontSize = parsed + '%';
+                      el.setAttribute('data-font-scale', parsed.toString());
+                    }
+                  }
                 } catch(e) {}
               })();
             `,

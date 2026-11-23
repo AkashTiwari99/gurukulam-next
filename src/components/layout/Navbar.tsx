@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '../theme/ThemeToggle';
+import { FontSizeControl } from '../theme/FontSizeControl';
 import { FastSearchModal } from '../search/FastSearchModal';
 import { Search, Menu, X, ChevronDown, BookOpen } from 'lucide-react';
 
@@ -249,6 +250,9 @@ export function Navbar() {
               </kbd>
             </button>
 
+            {/* Global Font Size Scaler */}
+            <FontSizeControl />
+
             {/* Theme Switcher */}
             <ThemeToggle />
 
@@ -365,6 +369,15 @@ export function Navbar() {
                   })}
                 </div>
               )}
+            </div>
+
+            {/* Mobile Text Size & Theme Bar */}
+            <div className="pt-3 mt-2 border-t border-border-subtle flex items-center justify-between px-4">
+              <span className="text-xs text-textMuted font-medium">Text Size & Theme:</span>
+              <div className="flex items-center space-x-2">
+                <FontSizeControl />
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         )}

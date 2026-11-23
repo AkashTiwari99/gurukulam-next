@@ -211,7 +211,7 @@ export function ShlokMalaClient({ data }: { data: MalaData }) {
             </div>
 
             {/* Sanskrit Verse */}
-            <div className="font-devanagari text-lg sm:text-xl font-semibold leading-loose text-textPrimary text-center whitespace-pre-line py-3">
+            <div className="font-devanagari text-lg sm:text-xl font-semibold leading-loose text-textPrimary text-center whitespace-pre-line break-words py-3">
               {shlok.sanskrit}
             </div>
 
