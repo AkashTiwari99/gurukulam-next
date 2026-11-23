@@ -61,6 +61,7 @@ class TestNextMigration(unittest.TestCase):
             "out/programs/index.html",
             "out/contact/index.html",
             "out/books/index.html",
+            "out/library/index.html",
             "out/books/ramayana/index.html",
             "out/books/ramayana/balakanda/sarga-1/index.html",
             "out/books/shlok-mala/1/index.html",

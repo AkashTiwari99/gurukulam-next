@@ -58,7 +58,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/books" className="text-textSecondary hover:text-accent transition-colors">
+                <Link href="/library" className="text-textSecondary hover:text-accent transition-colors">
                   Digital Granthalaya & PDFs
                 </Link>
               </li>

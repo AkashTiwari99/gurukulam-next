@@ -5,7 +5,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '../theme/ThemeToggle';
 import { FastSearchModal } from '../search/FastSearchModal';
-import { Search, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, BookOpen } from 'lucide-react';
+
+const LIBRARY_LINKS = [
+  { href: '/library', label: 'All Library & Books', desc: 'डिजिटल पुस्तकालय एवं संग्रह' },
+  { href: '/books/ramayana', label: 'श्रीमद्वाल्मीकिरामायणम्', desc: '७ काण्ड, ६४५ सर्ग, २४,००० श्लोक' },
+  { href: '/books/shlok-mala/1', label: 'श्लोक माला १', desc: '१२० चयनित श्लोक (ऑडियो सहित)' },
+  { href: '/books/shlok-mala/2', label: 'श्लोक माला २', desc: '२२९ प्रेरक नीति श्लोक' },
+  { href: '/library#pdfs', label: 'शोध ग्रन्थ एवं PDFs', desc: 'डाउनलोड व ऑनलाइन अध्ययन ग्रन्थ' },
+];
 
 const ABOUT_LINKS = [
   { href: '/about', label: 'About Gurukulam', desc: 'Our origin, heritage & pedagogies' },
@@ -14,12 +22,10 @@ const ABOUT_LINKS = [
   { href: '/team', label: 'Faculty & Acharyas', desc: 'Vedic scholars & instructors' },
 ];
 
-const DIRECT_LINKS = [
+const DIRECT_NAV_LINKS = [
   { href: '/programs', label: 'Programs' },
   { href: '/campus', label: 'Campus' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/books/ramayana', label: 'रामायण' },
-  { href: '/books/shlok-mala/1', label: 'श्लोक माला' },
   { href: '/keyboard', label: 'कीबोर्ड' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -27,14 +33,19 @@ const DIRECT_LINKS = [
 export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileLibraryOpen, setMobileLibraryOpen] = React.useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = React.useState(false);
+  const [libraryDropdownOpen, setLibraryDropdownOpen] = React.useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
-  const dropdownRef = React.useRef<HTMLDivElement>(null);
 
-  // Close mobile drawer on route change
+  const libraryRef = React.useRef<HTMLDivElement>(null);
+  const aboutRef = React.useRef<HTMLDivElement>(null);
+
+  // Close menus on route change
   React.useEffect(() => {
     setMobileMenuOpen(false);
+    setLibraryDropdownOpen(false);
     setAboutDropdownOpen(false);
   }, [pathname]);
 
@@ -43,11 +54,15 @@ export function Navbar() {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setMobileMenuOpen(false);
+        setLibraryDropdownOpen(false);
         setAboutDropdownOpen(false);
       }
     };
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (libraryRef.current && !libraryRef.current.contains(e.target as Node)) {
+        setLibraryDropdownOpen(false);
+      }
+      if (aboutRef.current && !aboutRef.current.contains(e.target as Node)) {
         setAboutDropdownOpen(false);
       }
     };
@@ -59,6 +74,8 @@ export function Navbar() {
     };
   }, []);
 
+  const isLibraryActive =
+    pathname === '/library' || pathname.startsWith('/books');
   const isAboutActive = ABOUT_LINKS.some((l) => pathname === l.href);
 
   return (
@@ -80,8 +97,8 @@ export function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center space-x-1" aria-label="Desktop navigation">
+          {/* Desktop Navigation (Clean & Uncluttered) */}
+          <nav className="hidden lg:flex items-center space-x-1" aria-label="Desktop navigation">
             <Link
               href="/"
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
@@ -93,23 +110,94 @@ export function Navbar() {
               Home
             </Link>
 
-            {/* About Dropdown */}
+            {/* 1. Unified Library Dropdown */}
             <div
-              ref={dropdownRef}
+              ref={libraryRef}
+              className="relative"
+              onMouseEnter={() => setLibraryDropdownOpen(true)}
+              onMouseLeave={() => setLibraryDropdownOpen(false)}
+            >
+              <Link
+                href="/library"
+                onClick={() => setLibraryDropdownOpen(false)}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center space-x-1 transition-all duration-150 ${
+                  isLibraryActive
+                    ? 'bg-accent-soft text-accent font-semibold'
+                    : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
+                }`}
+                aria-expanded={libraryDropdownOpen}
+                aria-haspopup="true"
+              >
+                <span>Library</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-150 ${
+                    libraryDropdownOpen ? 'rotate-180 text-accent' : ''
+                  }`}
+                />
+              </Link>
+
+              {libraryDropdownOpen && (
+                <div className="absolute left-0 mt-1 w-72 rounded-2xl bg-surface border border-border-subtle shadow-elevated p-2 space-y-1 animate-fadeIn z-50">
+                  {LIBRARY_LINKS.map((subLink) => {
+                    const isSubActive =
+                      pathname === subLink.href ||
+                      (subLink.href !== '/library' && pathname.startsWith(subLink.href));
+                    return (
+                      <Link
+                        key={subLink.href}
+                        href={subLink.href}
+                        className={`block px-3 py-2 rounded-xl text-left transition-colors ${
+                          isSubActive
+                            ? 'bg-accent-soft text-accent'
+                            : 'hover:bg-subtle text-textPrimary'
+                        }`}
+                      >
+                        <div className="text-sm font-medium font-devanagari">{subLink.label}</div>
+                        <div className="text-[11px] text-textMuted leading-tight mt-0.5">
+                          {subLink.desc}
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Direct Links */}
+            {DIRECT_NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
+                    isActive
+                      ? 'bg-accent-soft text-accent font-semibold'
+                      : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+
+            {/* 2. About Dropdown */}
+            <div
+              ref={aboutRef}
               className="relative"
               onMouseEnter={() => setAboutDropdownOpen(true)}
               onMouseLeave={() => setAboutDropdownOpen(false)}
             >
-              <button
-                type="button"
-                onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
-                aria-expanded={aboutDropdownOpen}
-                aria-haspopup="true"
+              <Link
+                href="/about"
+                onClick={() => setAboutDropdownOpen(false)}
                 className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center space-x-1 transition-all duration-150 ${
                   isAboutActive
                     ? 'bg-accent-soft text-accent font-semibold'
                     : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
                 }`}
+                aria-expanded={aboutDropdownOpen}
+                aria-haspopup="true"
               >
                 <span>About</span>
                 <ChevronDown
@@ -117,10 +205,10 @@ export function Navbar() {
                     aboutDropdownOpen ? 'rotate-180 text-accent' : ''
                   }`}
                 />
-              </button>
+              </Link>
 
               {aboutDropdownOpen && (
-                <div className="absolute left-0 mt-1 w-64 rounded-2xl bg-surface border border-border-subtle shadow-elevated p-2 space-y-1 animate-fadeIn z-50">
+                <div className="absolute right-0 mt-1 w-64 rounded-2xl bg-surface border border-border-subtle shadow-elevated p-2 space-y-1 animate-fadeIn z-50">
                   {ABOUT_LINKS.map((subLink) => {
                     const isSubActive = pathname === subLink.href;
                     return (
@@ -143,24 +231,6 @@ export function Navbar() {
                 </div>
               )}
             </div>
-
-            {/* Direct Links */}
-            {DIRECT_LINKS.map((link) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
-                    isActive
-                      ? 'bg-accent-soft text-accent font-semibold'
-                      : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
           </nav>
 
           {/* Right actions: Search, Theme Toggle, Mobile Menu Button */}
@@ -186,7 +256,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-xl text-textSecondary hover:text-textPrimary hover:bg-subtle focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="lg:hidden p-2 rounded-xl text-textSecondary hover:text-textPrimary hover:bg-subtle focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle mobile menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -197,7 +267,7 @@ export function Navbar() {
 
         {/* Mobile Slide-Down Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden border-b border-border-subtle bg-surface/98 backdrop-blur-lg px-4 pt-3 pb-6 space-y-1 animate-fadeIn shadow-elevated max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <div className="lg:hidden border-b border-border-subtle bg-surface/98 backdrop-blur-lg px-4 pt-3 pb-6 space-y-1 animate-fadeIn shadow-elevated max-h-[calc(100vh-4rem)] overflow-y-auto">
             <Link
               href="/"
               className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
@@ -207,8 +277,62 @@ export function Navbar() {
               Home
             </Link>
 
-            {/* Collapsible About Accordion */}
+            {/* Mobile Library Accordion */}
             <div className="border-y border-border-subtle py-1 my-1">
+              <button
+                type="button"
+                onClick={() => setMobileLibraryOpen(!mobileLibraryOpen)}
+                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium text-textPrimary hover:bg-subtle"
+              >
+                <span>Library (ग्रन्थागार)</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-150 ${
+                    mobileLibraryOpen ? 'rotate-180 text-accent' : ''
+                  }`}
+                />
+              </button>
+              {mobileLibraryOpen && (
+                <div className="pl-4 pr-2 space-y-1 mt-1">
+                  {LIBRARY_LINKS.map((subLink) => {
+                    const isSubActive = pathname === subLink.href;
+                    return (
+                      <Link
+                        key={subLink.href}
+                        href={subLink.href}
+                        className={`block px-3 py-2 rounded-lg text-xs font-medium font-devanagari transition-colors ${
+                          isSubActive
+                            ? 'bg-accent-soft text-accent font-semibold'
+                            : 'text-textSecondary hover:text-textPrimary hover:bg-subtle'
+                        }`}
+                      >
+                        {subLink.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Direct Links */}
+            {DIRECT_NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'bg-accent-soft text-accent font-semibold'
+                      : 'text-textPrimary hover:bg-subtle'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+
+            {/* Mobile About Accordion */}
+            <div className="border-t border-border-subtle py-1 my-1">
               <button
                 type="button"
                 onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
@@ -242,24 +366,6 @@ export function Navbar() {
                 </div>
               )}
             </div>
-
-            {/* Direct Links */}
-            {DIRECT_LINKS.map((link) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-accent-soft text-accent font-semibold'
-                      : 'text-textPrimary hover:bg-subtle'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
           </div>
         )}
       </header>
